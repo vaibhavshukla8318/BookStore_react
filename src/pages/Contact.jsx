@@ -26,12 +26,12 @@ const Contact = () => {
     <div className="contact-container">
       <div className="contact-header">
         <h2>Contact Us</h2>
-        <img src="https://unsplash.com/photos/wD1LRb9OeEo/download?force=true&w=1920" alt="Contact Banner" className="contact-header-img" />
+        <img src="../../public/images/contactHeaderImage.jpg" alt="Contact Banner" className="contact-header-img" />
       </div>
 
       {/* Contact Form with Image */}
       <div className="form-section">
-        <img src="https://unsplash.com/photos/2EJCSULRwC8/download?force=true&w=800" alt="Contact Image" className="contact-image" />
+        <img src="../../public/images/contactImage.jpg" alt="Contact Image" className="contact-image" />
 
         <form onSubmit={handleSubmit} className="contact-form">
           {/* Username */}

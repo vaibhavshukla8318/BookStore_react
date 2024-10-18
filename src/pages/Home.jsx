@@ -12,7 +12,7 @@ const Home = () => {
           <button>Get Started</button>
         </div>
         <div className="hero-image">
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=500" alt="Hero" />
+          <img src="../../public/images/heroImage.png" alt="Hero" />
         </div>
       </section>
 
@@ -27,15 +27,15 @@ const Home = () => {
         <h2>Our Collections</h2>
         <div className="collection-items">
           <div className="item">
-            <img src="https://i.redd.it/9u3vne29fe7z.jpg" alt="Math Collection" />
+            <img src="../../public/images/mathCollection.png" alt="Math Collection" />
             <p>Math Resources</p>
           </div>
           <div className="item">
-            <img src="https://images.unsplash.com/photo-1501426026826-31c667bdf23d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=150" />
+            <img src="../../public/images/scienceCollectionImage.jpg" />
             <p>Science Resources</p>
           </div>
           <div className="item">
-            <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=150" alt="Programming Collection" />
+            <img src="../../public/images/programmingCollection.png" />
             <p>Programming Courses</p>
           </div>
         </div>
