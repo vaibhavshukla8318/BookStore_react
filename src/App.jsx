@@ -6,6 +6,8 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
 
@@ -20,7 +22,10 @@ function App() {
          <Route path="/services" element={<Services />} />
          <Route path="/register" element={<Register />} />
          <Route path="/login" element={<Login />} />
+         <Route path="*" element={<PageNotFound />} />
        </Routes>
+
+       <Footer/>
      </BrowserRouter>
     </>
   )
