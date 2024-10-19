@@ -8,8 +8,12 @@ import Register from './pages/Register';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PageNotFound from './pages/PageNotFound';
+import { Logout } from './pages/Logout';
+
 
 function App() {
+
+
 
   return (
     <>
@@ -22,6 +26,7 @@ function App() {
          <Route path="/services" element={<Services />} />
          <Route path="/register" element={<Register />} />
          <Route path="/login" element={<Login />} />
+         <Route path="/logout" element={<Logout />} />
          <Route path="*" element={<PageNotFound />} />
        </Routes>
 

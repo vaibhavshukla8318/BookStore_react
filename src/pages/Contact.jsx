@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useAuth } from '../store/auth';
 import '../App.css';
 
+
+const defaultUserContact = {
+  username: '',
+  email: '',
+  message: ''
+}
 const Contact = () => {
-  const [contact, setContact] = useState({
-    username: '',
-    email: '',
-    message: ''
-  });
+  const [contact, setContact] = useState(defaultUserContact);
+
+  const [userData, setUserData] = useState(true);
+
+  const {user} = useAuth();
+
+  if(userData && user){
+    setContact({
+      username: user.username,
+      email: user.email,
+      message: ''
+    });
+
+    setUserData(false);
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,10 +33,29 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(contact);
-    // You can add functionality to handle the form data (e.g., send to backend)
+    
+    try {
+      const response = await fetch(`http://localhost:3000/api/form/contact`,{
+        method: "POST",
+        headers:{
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contact),
+     });
+
+     if(response.ok){
+       setContact(defaultUserContact);
+       const data = await response.json()
+       console.log(data);
+       alert("Form submitted successfully");
+     }
+
+    } catch (error) {
+      alert("Message not send");
+      console.log(error);
+    }
   };
 
   return (
