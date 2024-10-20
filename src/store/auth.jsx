@@ -8,8 +8,11 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
+  const [services, setServices] = useState("");
+  const authorizationToken = `Bearer ${token}`;
 
    const storeTokenInLS = (serverToken) =>{
+    setToken(serverToken);
       return localStorage.setItem("token", serverToken);
    };
 
@@ -28,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await fetch("http://localhost:3000/api/auth/user", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: authorizationToken,
         },
       });
       if (response.ok) {
@@ -41,13 +44,31 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  // get Services from the backend
+  const getServices = async () =>{
+      try {
+
+        const response = await fetch('http://localhost:3000/api/data/service', {
+          method: 'GET'
+        })
+        if(response.ok){
+          const data = await response.json();
+          console.log('Services data: ', data.msg);
+          setServices(data.msg);
+        }
+      } catch (error) {
+        console.log(`Error is coming from frontend services: ${error}`)
+      }
+  }
+
   useEffect(()=>{
     userAuthentication();
+    getServices();
   }, [])
 
 
    return (
-     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user }}>
+     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, services, authorizationToken }}>
         {children}
      </AuthContext.Provider>
    )

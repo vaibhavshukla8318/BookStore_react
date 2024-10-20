@@ -2,6 +2,7 @@ import { useState } from "react";
 import {Link} from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 import '../App.css'
 
 const Register = () => {
@@ -40,9 +41,11 @@ const Register = () => {
         body: JSON.stringify(user),
      });
 
+     const res_data = await response.json();
+     console.log("res from server" ,res_data.extraDetails);
+
      if(response.ok){
-      const res_data = await response.json();
-      console.log(res_data);
+    //  stored the token in local storage
       storeTokenInLS(res_data.token)
 
       setUser({
@@ -50,7 +53,12 @@ const Register = () => {
         email: "",
         phone: "",
         password:""});
-      navigate("/login")  
+
+        toast.success("Registration Successfully");
+      navigate("/")  
+     }
+     else{
+      toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
      }
 
      console.log(response)
