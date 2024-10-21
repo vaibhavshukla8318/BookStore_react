@@ -1,9 +1,60 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // import { Link } from 'react-router-dom';
 import '../components/layouts/Admin.css'
+import { useAuth } from '../store/auth'
+import {toast} from 'react-toastify'
 
 const AdminContacts = () => {
+  const [contacts, setContacts] = useState([]);
+  const {authorizationToken, API} = useAuth();
+
+  const getAllConatactData = async () =>{
+    try {
+     const response = await fetch(`${API}/api/admin/contact`, {
+       method: "GET",
+       headers: {
+         Authorization: authorizationToken
+        }
+      });
+      const data = await response.json();
+      console.log("This is a contacts All data", data);
+      if(response.ok){
+        setContacts(data);
+      }
+    } catch (error) {
+     console.log(error);
+    }
+  }
+
+   //  delete User by id
+   const deleteContactById = async (id) =>{
+    try {
+     const response = await fetch(`${API}/api/admin/contact/delete/${id}`, {
+       method: "DELETE",
+       headers: {
+         Authorization: authorizationToken
+        }
+      });
+      const data = await response.json();
+      console.log("User after delete", data);
+      if(response.ok){
+        toast.success("Contact deleted successfully");
+        getAllConatactData();
+      }
+      else{
+        toast.error("Failed to delete contact");
+      }
+    } catch (error) {
+     console.log(error);
+    }
+  }
+
+
+  useEffect(()=>{
+    getAllConatactData();
+  }, []);
+
   return (
     <div className='admin-container'>
        {/* Main Content */}
@@ -18,33 +69,6 @@ const AdminContacts = () => {
           </div>
         </section>
 
-       
-        {/* <section id="users">
-          <h2>Users</h2>
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>John Doe</td>
-                  <td>john@example.com</td>
-                  <td>Active</td>
-                </tr>
-                <tr>
-                  <td>Jane Doe</td>
-                  <td>jane@example.com</td>
-                  <td>Inactive</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section> */}
 
         <section id="contacts">
           <h2>Contacts</h2>
@@ -55,20 +79,23 @@ const AdminContacts = () => {
                   <th>Name</th>
                   <th>Email</th>
                   <th>Message</th>
+                  {/* <th>Update</th> */}
+                  <th>Delete</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Michael Scott</td>
-                  <td>michael@dundermifflin.com</td>
-                  <td>Interested in collaboration!</td>
-                </tr>
-                <tr>
-                  <td>Pam Beesly</td>
-                  <td>pam@dundermifflin.com</td>
-                  <td>Requesting more information.</td>
-                </tr>
-              </tbody>
+              {contacts.map((currContact, index) => {
+                return (
+                  <tbody key={index}>
+                    <tr>
+                      <td>{currContact.username}</td>
+                      <td>{currContact.email}</td>
+                      <td>{currContact.message}</td>
+                      {/* <td>Edit</td> */}
+                      <td><button onClick={()=> deleteContactById(currContact._id)}>Delete</button></td>
+                    </tr>
+                  </tbody>
+                )
+              })}
             </table>
           </div>
         </section>

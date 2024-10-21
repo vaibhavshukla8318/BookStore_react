@@ -8,8 +8,13 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
-  const [services, setServices] = useState("");
+  const [services, setServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const API = import.meta.env.VITE_API_URL;
   const authorizationToken = `Bearer ${token}`;
+
+  
 
    const storeTokenInLS = (serverToken) =>{
     setToken(serverToken);
@@ -29,7 +34,8 @@ export const AuthProvider = ({ children }) => {
   const userAuthentication = async () => {
     
     try {
-      const response = await fetch("http://localhost:3000/api/auth/user", {
+       setIsLoading(true);
+      const response = await fetch(`${API}/api/auth/user`, {
         headers: {
           Authorization: authorizationToken,
         },
@@ -38,6 +44,11 @@ export const AuthProvider = ({ children }) => {
         const data = await response.json();
         console.log('user data ', data.userData);
         setUser(data.userData);
+        setIsLoading(false);
+      }
+      else{
+        console.log('Error fetching user data');
+        setIsLoading(false);
       }
     } catch (error) {
       console.log("Error fetching user data", error);
@@ -48,7 +59,7 @@ export const AuthProvider = ({ children }) => {
   const getServices = async () =>{
       try {
 
-        const response = await fetch('http://localhost:3000/api/data/service', {
+        const response = await fetch(`${API}/api/data/service`, {
           method: 'GET'
         })
         if(response.ok){
@@ -68,7 +79,7 @@ export const AuthProvider = ({ children }) => {
 
 
    return (
-     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, services, authorizationToken }}>
+     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, services, authorizationToken, isLoading, API }}>
         {children}
      </AuthContext.Provider>
    )

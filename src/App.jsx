@@ -11,6 +11,7 @@ import AdminPanel from './components/layouts/admin-layout';
 import AdminContacts from './pages/Admin-Contacts';
 import AdminUsers from './pages/admin-users';
 import PublicLayout from './components/layouts/Public-Layout';
+import UpdatePage from './pages/UpdatePage';
 // import AdminLayout;
 
 const App = () => {
@@ -33,6 +34,8 @@ const App = () => {
         <Route path="/admin" element={<AdminPanel />}>
           <Route path="users" element={<AdminUsers />} />
           <Route path="contacts" element={<AdminContacts />} />
+          <Route path="users/:id/edit" element={<UpdatePage />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

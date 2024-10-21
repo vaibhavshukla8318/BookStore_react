@@ -10,7 +10,7 @@ const Login = () => {
   })
 
   const navigate = useNavigate();
-  const {storeTokenInLS} = useAuth();
+  const {storeTokenInLS, API} = useAuth();
 
   const handleInput = (e) => {
     // console.log(e);
@@ -29,7 +29,7 @@ const Login = () => {
     console.log(user);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/auth/login`,{
+      const response = await fetch(`${API}/api/auth/login`,{
         method: "POST",
         headers:{
           "Content-Type": "application/json",

@@ -1,15 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react'
 import '../components/layouts/Admin.css'
+import {Link} from 'react-router-dom';
 import { useAuth } from '../store/auth'
 
 const AdminUsers = () => {
    const [user, setUser] = useState([]);
-   const {authorizationToken} = useAuth();
+   const {authorizationToken, API} = useAuth();
 
    const getAllUsersData = async () =>{
      try {
-      const response = await fetch('http://localhost:3000/api/admin/users', {
+      const response = await fetch(`${API}/api/admin/users`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken
@@ -17,11 +18,31 @@ const AdminUsers = () => {
        });
        const data = await response.json();
        setUser(data);
-       console.log("This is a use All data", data);
+       console.log("This is a user All data", data);
      } catch (error) {
       console.log(error);
      }
    }
+
+  //  delete User by id
+  const deleteUserById = async (id) =>{
+    try {
+     const response = await fetch(`${API}/api/admin/users/delete/${id}`, {
+       method: "DELETE",
+       headers: {
+         Authorization: authorizationToken
+        }
+      });
+      const data = await response.json();
+      console.log("User after delete", data);
+      if(response.ok){
+        getAllUsersData();
+      }
+    } catch (error) {
+     console.log(error);
+    }
+  }
+
 
 
    useEffect(()=>{
@@ -53,52 +74,30 @@ const AdminUsers = () => {
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Status</th>
+                        <th>Update</th>
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     {user.map((currUser, index) =>{
                       return(
                         <tbody  key={index}>
                           <tr>
-                            <td>{currUser.name}</td>
+                            <td>{currUser.username}</td>
                             <td>{currUser.email}</td>
                             <td>{currUser.phone}</td>
                             <td>Active</td>
+                            <td>
+                              <Link to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
+                            </td>
+                            <td><button onClick={()=> deleteUserById(currUser._id)}>Delete</button></td>
                           </tr>
                         </tbody>
                       )
                       
                      })}
-                  </table>
-          
+                  </table>       
         </div>
       </section>
-
-      {/* <section id="contacts">
-        <h2>Contacts</h2>
-        <div className="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Message</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Michael Scott</td>
-                <td>michael@dundermifflin.com</td>
-                <td>Interested in collaboration!</td>
-              </tr>
-              <tr>
-                <td>Pam Beesly</td>
-                <td>pam@dundermifflin.com</td>
-                <td>Requesting more information.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section> */}
        </main>
     </div>
   )
