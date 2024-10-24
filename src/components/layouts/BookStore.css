@@ -1,0 +1,130 @@
+.book-store {
+  display: flex;
+  /* height: 100vh; */
+}
+
+/* Navbar */
+.book-store .navbar {
+  width: 100%;
+  background-color:#fff ;
+  color: #5F6368;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.book-store .navbar-logo {
+  font-size: 1.5rem;
+  color: #5F6368;
+}
+.book-store .navbar-logo .link{
+  text-decoration: none;
+  color: #5F6368;
+}
+
+.book-store .navbar-links a {
+  margin: 0 15px;
+  color: #5F6368;
+  text-decoration: none;
+}
+
+.book-store .navbar-links a:hover {
+  text-decoration: underline;
+}
+
+.navbar.scrolled {
+  box-shadow: 3px 3px 3px gray;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.book-store .main-content {
+  background-color: #fff;
+  height: 100vh;
+  margin-left: 0;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 100px; /* Adjust for navbar */
+  
+  width: 90%;
+}
+
+.recently-added{
+  
+}
+.header-name{
+  margin-bottom: 30px;
+}
+.header-name .small{
+  color: #5F6368;
+}
+.header-name h2{
+  margin-bottom: -5px;
+}
+.header-name small{
+  
+}
+.card-container{
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  overflow-x: auto;
+  box-shadow: 3px 3px 3px gray;
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+
+.card-container::-webkit-scrollbar{
+  display: none;
+}
+.book-card{
+   /* margin-bottom: 70px; */
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   cursor: pointer;
+   padding: 10px;
+}
+.book-card:hover{
+  box-shadow: 3px 3px 3px 3px gray;
+  border: none;
+  transition: all 0.3s linear;
+}
+.book-card img{
+  min-height: 260px;
+  width: 190px;
+  border-radius: 10px;
+}
+.title-container{
+  margin-top: 7px;
+}
+.title-container p{
+  position: sticky;
+  width: 190px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: -0.1px;
+  padding-left: 10px;
+  text-align: left;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.title{
+  color:cadetblue;
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  
+
+}

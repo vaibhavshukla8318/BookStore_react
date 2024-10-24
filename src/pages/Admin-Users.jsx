@@ -53,51 +53,51 @@ const AdminUsers = () => {
   return (
     <div className='admin-container'>
        <main className="main-content">
-      
-      <section id="dashboard">
-        <h2>Dashboard</h2>
-        <div className="dashboard-cards">
-          <div className="card">Total Users: 1023</div>
-          <div className="card">Active Users: 854</div>
-          <div className="card">Messages: 123</div>
-        </div>
-      </section>
+   
+        <section id="dashboard">
+          <h2>Dashboard</h2>
+          <div className="dashboard-cards">
+            <div className="card">Total Users: {user.length}</div>
+            {/* <div className="card">Active Users: 854</div>
+            <div className="card">Messages: 123</div> */}
+          </div>
+        </section>
 
-     
-      <section id="users">
-        <h2>Users</h2>
-        <div className="table-container">
-                 <table>
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Status</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                      </tr>
-                    </thead>
-                    {user.map((currUser, index) =>{
-                      return(
-                        <tbody  key={index}>
-                          <tr>
-                            <td>{currUser.username}</td>
-                            <td>{currUser.email}</td>
-                            <td>{currUser.phone}</td>
-                            <td>Active</td>
-                            <td>
-                              <Link to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
-                            </td>
-                            <td><button onClick={()=> deleteUserById(currUser._id)}>Delete</button></td>
-                          </tr>
-                        </tbody>
-                      )
-                      
-                     })}
-                  </table>       
-        </div>
-      </section>
+        <section id="users">
+          <h2>Users</h2>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  {/* <th>Status</th> */}
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              {user.map((currUser, index) =>{
+                return(
+                <tbody  key={index}>
+                  <tr>
+                    <td>{currUser.username}</td>
+                    <td>{currUser.email}</td>
+                    <td>{currUser.phone}</td>
+                    {/* <td>Active</td> */}
+                    <td>
+                      <Link to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
+                    </td>
+                    <td><button onClick={()=> deleteUserById(currUser._id)}>Delete</button></td>
+                  </tr>
+                </tbody>
+                )                      
+              })}
+                
+            </table>       
+          </div>
+        </section>
+            
        </main>
     </div>
   )

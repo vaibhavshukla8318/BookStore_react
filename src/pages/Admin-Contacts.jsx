@@ -63,9 +63,9 @@ const AdminContacts = () => {
         <section id="dashboard">
           <h2>Dashboard</h2>
           <div className="dashboard-cards">
-            <div className="card">Total Users: 1023</div>
-            <div className="card">Active Users: 854</div>
-            <div className="card">Messages: 123</div>
+            {/* <div className="card">Total Users: 1023</div>
+            <div className="card">Active Users: 854</div> */}
+            <div className="card">Messages: {contacts.length}</div>
           </div>
         </section>
 
