@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useAuth } from '../store/auth';
+import { useAuth } from '../../store/auth';
 import { toast } from 'react-toastify';
-import '../App.css';
+import './css/Contact.css';
 
 
 const defaultUserContact = {

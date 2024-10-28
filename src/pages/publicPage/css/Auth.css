@@ -1,0 +1,95 @@
+/* Register.css */
+.register, .login {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: #f4f4f4;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register h2, .login h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 2rem;
+}
+
+.register form, .login form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.register form div, .login form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.register label, .login label {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.register input, .login input {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.register input:focus, .login input:focus {
+  border-color: #ff9900;
+  outline: none;
+}
+
+button[type="submit"] {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #e08900;
+}
+
+p {
+  margin-top: 1rem;
+  text-align: center;
+  color: #666;
+}
+
+p a {
+  color: #ff9900;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+
+@media(max-width: 768px){
+   /* login and register */
+   
+   .register, .login {
+    padding: 1.5rem;
+  }
+
+  .register h2, .login h2 {
+    font-size: 1.8rem;
+  }
+
+  .register input, .login input {
+    font-size: 0.9rem;
+  }
+
+}

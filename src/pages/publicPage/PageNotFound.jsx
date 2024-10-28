@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
-import '../App.css';
+import './css/PageNotFound.css';
 
 const PageNotFound = () => {
   return (
@@ -7,7 +8,7 @@ const PageNotFound = () => {
       <div className="text-section">
         <h1>404</h1>
         <h2>Oops! Page Not Found</h2>
-        <p>The page you're looking for doesn't exist. It might have been moved or deleted.</p>
+        <p>The page you&apos;re looking for doesn&apos;t exist. It might have been moved or deleted.</p>
         <a href="/" className="back-home">Go Back Home</a>
       </div>
       <div className="animation-section">

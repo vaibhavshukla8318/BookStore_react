@@ -1,0 +1,127 @@
+/* CSS for Home */
+/* General Styles */
+.home-container {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  padding: 2rem;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 3rem;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  color: #333;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #666;
+}
+
+.hero-text button {
+  padding: 0.8rem 1.5rem;
+  margin-top: 1.5rem;
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-text button:hover {
+  background-color: #e08900;
+}
+
+.hero-image{
+  padding:15px;
+  border: 3px solid gray;
+  box-shadow: 3px 3px 3px 3px gray;
+}
+.hero-image:hover{
+  border: 3px solid gray;
+  box-shadow: 3px 3px 3px 3px gray;
+  transition: all 0.3s ease-in-out;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.about{
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.about h2 {
+  font-size: 2.5rem;
+  color: #333;
+}
+.about p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #666;
+  max-width: 800px;
+  margin: 1rem auto;
+}
+
+
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+
+  /* home page */
+
+  .hero {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .hero-image {
+    margin-top: 1.5rem;
+  }
+
+  .collection-items, .text-items {
+    flex-direction: column;
+  }
+  .texts h2{
+    text-align: left;
+  }
+  .text{
+    min-width: 90%;
+    margin-bottom: 40px;
+  }
+  .text p{
+    text-align: left;
+   
+    text-align: justify;
+  }
+  .collection-items .item{
+    width: 90%;
+  }
+  .collection-items .item img{
+     min-width: 100%;
+     height: auto;
+  }
+
+  button[type="submit"] {
+    font-size: 1rem;
+  }
+
+ 
+}
+

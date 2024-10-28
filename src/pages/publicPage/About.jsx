@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
-import '../App.css';
+import './css/About.css';
 
 const About = () => {
   return (
@@ -7,7 +8,7 @@ const About = () => {
       {/* Header Section */}
       <header className="about-header">
         <h1>About Us</h1>
-        <p>We are passionate about providing the best web solutions to our users.</p>
+        <p>We are passionate about connecting readers with the stories that inspire them.</p>
       </header>
 
       {/* Analytics Section */}
@@ -15,16 +16,16 @@ const About = () => {
         <h2>Our Impact</h2>
         <div className="analytics-cards">
           <div className="card">
-            <h3>500+</h3>
-            <p>Projects Completed</p>
+            <h3>10,000+</h3>
+            <p>Books Sold</p>
           </div>
           <div className="card">
-            <h3>300+</h3>
-            <p>Happy Clients</p>
+            <h3>5,000+</h3>
+            <p>Happy Readers</p>
           </div>
           <div className="card">
-            <h3>150K+</h3>
-            <p>Active Users</p>
+            <h3>1,000+</h3>
+            <p>Book Reviews</p>
           </div>
         </div>
       </section>
@@ -34,14 +35,14 @@ const About = () => {
         <h2>Meet Our Team</h2>
         <div className="team">
           <div className="team-member">
-            <img src="../../public/images/janeDoe.png" alt="Team Member" />
-            <h3>John Doe</h3>
+            <img src="https://avatars.githubusercontent.com/u/118811794?v=4" alt="John Doe" />
+            <h3>Vaibhav Shukla</h3>
             <p>Founder & CEO</p>
           </div>
           <div className="team-member">
-            <img src="../../public/images/janeSmith.png" alt="Team Member" />
+            <img src="https://img.freepik.com/free-photo/lifestyle-businessman_23-2148102423.jpg?semt=ais_hybrid" alt="Jane Smith" />
             <h3>Jane Smith</h3>
-            <p>Lead Developer</p>
+            <p>Chief Marketing Officer</p>
           </div>
         </div>
       </section>
@@ -50,7 +51,7 @@ const About = () => {
       <section className="mission-section">
         <h2>Our Mission</h2>
         <p>
-          Our mission is to deliver high-quality digital products and services that empower businesses to succeed online. We believe in innovation, teamwork, and integrity.
+          Our mission is to deliver a diverse selection of quality books that empower readers to explore new ideas and perspectives. We believe in the transformative power of literature.
         </p>
       </section>
     </div>

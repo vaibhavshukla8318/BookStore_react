@@ -1,0 +1,86 @@
+
+
+
+/* Page not found CSS */
+/* General Styles */
+.pagenotfound-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background-color: #f1f1f1;
+  font-family: 'Arial', sans-serif;
+}
+
+.text-section {
+  flex: 1;
+  margin-right: 2rem;
+}
+
+.text-section h1 {
+  font-size: 8rem;
+  color: #ff4b5c;
+  margin-bottom: 1rem;
+}
+
+.text-section h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.text-section p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.text-section .back-home {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  background-color: #ff9900;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.text-section .back-home:hover {
+  background-color: #e08900;
+}
+
+/* Animation Section */
+.animation-section {
+  flex: 1;
+}
+
+.animation-img {
+  width: 100%;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Animation Keyframes */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+
+@media(max-width: 768px){
+  .pagenotfound-container {
+    flex-direction: column;
+  }
+
+  .text-section {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+}

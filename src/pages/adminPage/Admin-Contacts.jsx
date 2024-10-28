@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react'
 // import { Link } from 'react-router-dom';
-import '../components/layouts/Admin.css'
-import { useAuth } from '../store/auth'
+import './css/Admin.css'
+import { useAuth } from '../../store/auth'
 import {toast} from 'react-toastify'
 
 const AdminContacts = () => {
@@ -86,10 +86,11 @@ const AdminContacts = () => {
               {contacts.map((currContact, index) => {
                 return (
                   <tbody key={index}>
-                    <tr>
+                    <tr className='table-row'>
                       <td>{currContact.username}</td>
                       <td>{currContact.email}</td>
-                      <td>{currContact.message}</td>
+                      <td><div className='emailData'>{currContact.message}</div></td>
+                      
                       {/* <td>Edit</td> */}
                       <td><button onClick={()=> deleteContactById(currContact._id)}>Delete</button></td>
                     </tr>

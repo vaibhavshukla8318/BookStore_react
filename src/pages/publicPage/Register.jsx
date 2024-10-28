@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {Link} from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../store/auth";
+import { useAuth } from "../../store/auth";
 import { toast } from "react-toastify";
-import '../App.css'
+import './css/Auth.css';
 
 const Register = () => {
   const [user, setUser] = useState({

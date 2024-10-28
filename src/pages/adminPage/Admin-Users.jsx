@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react'
-import '../components/layouts/Admin.css'
+import './css/Admin.css'
 import {Link} from 'react-router-dom';
-import { useAuth } from '../store/auth'
+import { useAuth } from '../../store/auth'
 
 const AdminUsers = () => {
    const [user, setUser] = useState([]);
@@ -73,20 +73,20 @@ const AdminUsers = () => {
                   <th>Email</th>
                   <th>Phone</th>
                   {/* <th>Status</th> */}
-                  <th>Update</th>
+                  <th className='updateHeaderData'>Update</th>
                   <th>Delete</th>
                 </tr>
               </thead>
               {user.map((currUser, index) =>{
                 return(
                 <tbody  key={index}>
-                  <tr>
+                  <tr className='table-row'>
                     <td>{currUser.username}</td>
                     <td>{currUser.email}</td>
                     <td>{currUser.phone}</td>
                     {/* <td>Active</td> */}
                     <td>
-                      <Link to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
+                      <Link className='dataLink' to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
                     </td>
                     <td><button onClick={()=> deleteUserById(currUser._id)}>Delete</button></td>
                   </tr>

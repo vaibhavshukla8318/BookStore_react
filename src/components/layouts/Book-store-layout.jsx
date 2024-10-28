@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Navigate, NavLink } from 'react-router-dom';
 import { useAuth } from '../../store/auth';
-import './BookStore.css'
+import '../../pages/bookStorePage/css/BookStore.css'
 
 const BookStoreLayout = () => {
  
   const [isScrolled, setIsScrolled] = useState(false);
-  const {isLoggedIn, isLoading, books} = useAuth();
+  const {isLoggedIn, isLoading} = useAuth();
 
 
   // Function to handle scroll event
@@ -55,32 +55,9 @@ const BookStoreLayout = () => {
         </div>
        
       </header>
-      <main className="main-content">
-        <section className='recently-added'>
-          <div className='header-name'>
-            <h2>Recently Added</h2>
-            <small>our latest offers</small>
-          </div>
-          <div className='card-container'>
-            {books.map((currData, index)=>{
-              const {title, author, image} = currData;
-              return(
-                <>
-                  <div className="book-card" key={index}>
-                    <img src={image} alt="book cover" />
-                    <div className='title-container'>
-                      <p className='title'>{title}</p>
-                      <p>{author}</p>
-                    </div>
-                  </div>
-                </>
-              )
-            })}
-          </div>
-        </section>
-      </main>
-      </div>
+      
       <Outlet />
+      </div>
     </>
   );
 };

@@ -8,7 +8,6 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
   const [services, setServices] = useState([]);
-  const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const API = import.meta.env.VITE_API_URL;
@@ -74,33 +73,16 @@ export const AuthProvider = ({ children }) => {
   }
 
 
-  // get books from the backend
-  const getBooks = async () =>{
-       
-    try {
 
-      const response = await fetch(`${API}/api/bookstore/books`, {
-        method: 'GET'
-      })
-      if(response.ok){
-        const data = await response.json();
-        // console.log('books data: ', data.msg);
-        setBooks(data.msg);
-      }
-    } catch (error) {
-      console.log(`Error is coming from frontend services: ${error}`)
-    }
-}
 
   useEffect(()=>{
     userAuthentication();
     getServices();
-    getBooks();
   }, [])
 
 
    return (
-     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, services, books, authorizationToken, isLoading, API }}>
+     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, services, authorizationToken, isLoading, API }}>
         {children}
      </AuthContext.Provider>
    )

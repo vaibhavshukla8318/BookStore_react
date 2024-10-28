@@ -1,0 +1,161 @@
+
+/* Contact css */
+
+/* General Styles */
+.contact-container {
+  font-family: 'Arial', sans-serif;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #333;
+}
+
+/* Contact Header with Image */
+.contact-header {
+  text-align: center;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.contact-header h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.contact-header-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Section with Side Image */
+.form-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.contact-image {
+  width: 40%;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+/* Contact Form */
+.contact-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-image{
+  min-height: 100%;
+  border: 2px solid red;
+  aspect-ratio: 3/2;
+
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #ff9900;
+}
+
+.form-group textarea {
+  height: 150px;
+  resize: none;
+}
+
+button {
+  padding: 1rem;
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e08900;
+}
+
+/* Map Container */
+.map-container {
+  margin-top: 2rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+iframe {
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 400px;
+}
+
+
+@media(max-width: 768px){
+  
+/* contact page */
+
+.contact-container {
+  padding: 1rem;
+  margin-top: 40px;
+}
+
+.form-section {
+  flex-direction: column;
+  text-align: center;
+}
+
+.contact-header-img{
+  display: none;
+}
+
+.contact-image{
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.contact-form{
+  width: 100%;
+}
+
+.form-group input, .form-group textarea {
+  font-size: 1rem;
+}
+}

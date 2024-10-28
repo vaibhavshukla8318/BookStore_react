@@ -1,20 +1,22 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // public layout
 import PublicLayout from './components/layouts/Public-Layout';
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Contact from './pages/Contact';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import PageNotFound from './pages/PageNotFound';
-import { Logout } from './pages/Logout';
+import Home from './pages/publicPage/Home';
+import About from './pages/publicPage/About';
+import Services from './pages/publicPage/Services';
+import Contact from './pages/publicPage/Contact';
+import Login from './pages/publicPage/Login';
+import Register from './pages/publicPage/Register';
+import PageNotFound from './pages/publicPage/PageNotFound';
+import { Logout } from './pages/publicPage/Logout';
 
 // Admin layout
 import AdminPanel from './components/layouts/admin-layout';
-import AdminContacts from './pages/Admin-Contacts';
-import AdminUsers from './pages/admin-users';
-import UpdatePage from './pages/UpdatePage';
+import Dashboard from './pages/adminPage/Dashboard';
+import AdminContacts from './pages/adminPage/Admin-Contacts';
+import AdminUsers from './pages/adminPage/admin-users';
+import UpdatePage from './pages/adminPage/UpdatePage';
+import AddingBooks from './pages/adminPage/AddingBooks';
 
 // Book-store layout
 import BookStoreLayout from './components/layouts/Book-store-layout';
@@ -40,15 +42,19 @@ const App = () => {
         </Route>
 
         {/* Book Store Routes */}
-        <Route path="/bookStore" element={<BookStoreLayout />}>
-          {/* <Route path="/bookstore" element={<BookStore />} /> */}
+        <Route element={<BookStoreLayout />}>
+          <Route path="/bookstore" element={<BookStore />} />
         </Route>
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminPanel />}>
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="contacts" element={<AdminContacts />} />
           <Route path="users/:id/edit" element={<UpdatePage />} />
+
+          {/* Adding a books */}
+          <Route path="addBooks" element={<AddingBooks />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,211 @@
+
+/* About CSS */
+/* General Container */
+
+.about-container {
+  padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.about-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.about-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Analytics Section */
+.analytics-section {
+  margin: 3rem 0;
+}
+
+.analytics-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.analytics-cards {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 10px;
+  width: 25%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 2.5rem;
+  color: #ff9900;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Team Section */
+.team-section {
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.team {
+  display: flex;
+  justify-content: space-around;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team .team-member img{
+  height: 200px;
+  width: 250px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 3px 3px 3px rgb(165, 181, 84);
+}
+
+
+
+.team-member h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.team-member p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Mission Section */
+.mission-section {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mission-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mission-section p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+
+/* Collection Section */
+.collection {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.collection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.collection-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.collection-items .item {
+  text-align: center;
+  padding: 15px;
+}
+.collection-items .item:hover{
+  box-shadow: 3px 3px 3px 3px gray;
+  transition: all 0.3s ease-in-out;
+}
+
+.collection-items .item img {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  /* object-fit: contain; */
+  aspect-ratio: 3/2;
+}
+
+.collection-items .item p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Text Section */
+.texts {
+  text-align: center;
+}
+
+.texts h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.text-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.text-items .text {
+  max-width: 250px;
+  text-align: center;
+}
+
+.text-items .text h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.text-items .text p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+
+
+@media(max-width: 768px){
+   /* about page */
+
+   .about-container{
+    margin-top: 40px;
+   }
+   .card h3{
+    font-size: 2.2rem;
+  }
+
+  .team {
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .mission-section p {
+    text-align: justify;
+  }
+}

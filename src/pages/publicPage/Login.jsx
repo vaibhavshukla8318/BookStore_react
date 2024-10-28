@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import { useAuth } from '../store/auth';
+import { useAuth } from '../../store/auth';
 import { toast } from 'react-toastify';
 const Login = () => {
 

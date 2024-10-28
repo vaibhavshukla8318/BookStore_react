@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState } from 'react';
-import { useAuth } from '../store/auth';
+import { useAuth } from '../../store/auth';
 import { useParams } from 'react-router-dom';
 import {toast} from 'react-toastify'
-import '../App.css';
+import './css/Admin.css'
 
 const UpdatePage = () => {
   const [userData, setUserData] = useState({

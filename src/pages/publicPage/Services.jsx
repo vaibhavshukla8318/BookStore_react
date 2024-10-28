@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import '../App.css';
-import { useAuth } from '../store/auth';
+import './css/Service.css';
+import { useAuth } from '../../store/auth';
 
 
 const Services = () => {
