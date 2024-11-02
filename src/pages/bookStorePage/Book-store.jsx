@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../store/auth'
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 
 
@@ -19,9 +21,6 @@ const BookStore = () => {
     
    
     const getBooks = async () =>{
-      
-      
-     
           
       try {
   
@@ -33,7 +32,7 @@ const BookStore = () => {
         })
         if(response.ok){
           const data = await response.json();
-          // console.log('books data: ', data);
+          // console.log('books data: ', data.response[0].recent);
           setBooks(data.response || []);
           setTotalPages(data.totalPages || 1);
         }
@@ -62,11 +61,11 @@ const BookStore = () => {
 
             <div>     
               <span onClick={goToPrevPage} className={currentPage == 1 ? "disabled" : ""}>
-                  &#8592;
+                <FaArrowLeftLong />
               </span>
               
               <span onClick={goToNextPage} className={currentPage === totalPages ? "disabled" : ""}>
-                  &#8594;
+                <FaArrowRightLong />
               </span>
             </div>
           </div>
@@ -76,13 +75,13 @@ const BookStore = () => {
                 const {title, author, image} = currData;
                 return(
                   
-                    <div className="book-card" key={index}>
+                    <Link to={`/bookstore/books/${currData._id}`} className="book-card" key={index}>
                       <img src={image} alt="book cover" />
                       <div className='title-container'>
                         <p className='title'>{title}</p>
                         <p>{author}</p>
                       </div>
-                    </div>
+                    </Link>
                   
                   
                 )

@@ -17,10 +17,16 @@ import AdminContacts from './pages/adminPage/Admin-Contacts';
 import AdminUsers from './pages/adminPage/admin-users';
 import UpdatePage from './pages/adminPage/UpdatePage';
 import AddingBooks from './pages/adminPage/AddingBooks';
+import InventoryPage from './pages/adminPage/InventoryPage';
+import UpdateBook from './pages/adminPage/UpdateBooks';
+
 
 // Book-store layout
 import BookStoreLayout from './components/layouts/Book-store-layout';
 import BookStore from './pages/bookStorePage/Book-store';
+import ContentPage from './pages/bookStorePage/Content-page';
+
+
 
 
 const App = () => {
@@ -44,14 +50,21 @@ const App = () => {
         {/* Book Store Routes */}
         <Route element={<BookStoreLayout />}>
           <Route path="/bookstore" element={<BookStore />} />
-        </Route>
+          <Route path="/bookStore/books/:id" element={<ContentPage />} />
+        </Route> 
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminPanel />}>
           <Route path="dashboard" element={<Dashboard />} />
+
+          {/* users */}
           <Route path="users" element={<AdminUsers />} />
           <Route path="contacts" element={<AdminContacts />} />
           <Route path="users/:id/edit" element={<UpdatePage />} />
+
+          {/* books */}
+          <Route path="bookStore/books/:id/edit" element={<UpdateBook />} />
+          <Route path="inventory" element={<InventoryPage/>} />
 
           {/* Adding a books */}
           <Route path="addBooks" element={<AddingBooks />} />
@@ -62,4 +75,3 @@ const App = () => {
 };
 
 export default App;
-About

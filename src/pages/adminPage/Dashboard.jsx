@@ -20,19 +20,19 @@ const Dashboard = () => {
           <section className="dashboard-metrics">
             <div className="metric-card">
               <h3>Books in Store</h3>
-              <p>10,300+</p>
+              <p>10</p>
             </div>
             <div className="metric-card">
               <h3>Total Sales</h3>
-              <p>$120,500</p>
+              <p>$1200</p>
             </div>
             <div className="metric-card">
               <h3>New Users Today</h3>
-              <p>35</p>
+              <p>2</p>
             </div>
             <div className="metric-card">
               <h3>Orders Pending</h3>
-              <p>45</p>
+              <p>5</p>
             </div>
           </section>
 
@@ -41,13 +41,13 @@ const Dashboard = () => {
             <h2>Recent Orders</h2>
             <ul>
               <li>
-                <strong>Order #12345</strong> - <em>&quot;The Pragmatic Programmer&quot;</em> - $40
+                <strong>Order #12345</strong> - <em>&quot;Backend- NodeJs&quot;</em> - $40
               </li>
               <li>
-                <strong>Order #12346</strong> - <em>&quot;Clean Code&quot;</em> - $35
+                <strong>Order #12346</strong> - <em>&quot;HTML & CSS&quot;</em> - $35
               </li>
               <li>
-                <strong>Order #12347</strong> - <em>&quot;JavaScript: The Good Parts&quot;</em> - $30
+                <strong>Order #12347</strong> - <em>&quot;JavaScript: Complete&quot;</em> - $30
               </li>
               <li>
                 <strong>Order #12348</strong> - <em>&quot;React for Beginners&quot;</em> - $50
@@ -60,8 +60,8 @@ const Dashboard = () => {
             <h2>Quick Actions</h2>
             <div className="action-buttons">
               {/* <button>Add New Book</button> */}
-              <Link to="/admin/addBooks">Add New Book</Link>
-              <button>Manage Inventory</button>
+              <button><Link className='link' to="/admin/addBooks">Add New Book</Link></button>
+              <button><Link className='link' to="/admin/inventory">Manage Inventory</Link></button>
               <button>Generate Reports</button>
             </div>
           </section>

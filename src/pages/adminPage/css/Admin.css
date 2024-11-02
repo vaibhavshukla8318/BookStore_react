@@ -1,3 +1,12 @@
+.pdf-input-group{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pdf-input-group>input{
+  margin: 7px 0;
+}
+
 /* General Styles */
 * {
   margin: 0;
@@ -148,9 +157,14 @@
   margin-bottom: 10px;
 }
 
+.metric-card>p{
+  filter: blur(3px);
+}
+
 .recent-transactions ul {
   list-style-type: none;
   padding-left: 0;
+  filter: blur(3px);
 }
 
 .recent-transactions li {
@@ -175,6 +189,18 @@
   color: white;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.action-buttons button:nth-child(3){
+  filter: blur(2px);
+}
+.action-buttons button:nth-child(3):hover{
+  cursor:not-allowed;
+}
+
+.quick-actions button .link{
+  text-decoration: none;
+  color: #fff;
 }
 
 .quick-actions button:hover {
@@ -357,7 +383,11 @@ tr th:nth-child(4){
 }
 
 
-
+/* Inventory */
+.inventoryImage{
+  height: 100px;
+  width: 100px;
+}
 
 
 /* Responsive Design */
