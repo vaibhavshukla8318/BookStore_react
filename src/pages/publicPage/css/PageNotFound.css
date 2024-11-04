@@ -1,8 +1,5 @@
-
-
-
 /* Page not found CSS */
-/* General Styles */
+
 .pagenotfound-container {
   display: flex;
   justify-content: center;
@@ -13,9 +10,13 @@
   font-family: 'Arial', sans-serif;
 }
 
+
 .text-section {
   flex: 1;
   margin-right: 2rem;
+  padding: 2rem;
+  line-height: 1.6;
+  color: #333;
 }
 
 .text-section h1 {
@@ -25,13 +26,14 @@
 }
 
 .text-section h2 {
-  font-size: 2.5rem;
-  color: #333;
+  font-size: 2rem;
+  color: #222;
   margin-bottom: 1rem;
 }
 
 .text-section p {
-  font-size: 1.2rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
   color: #666;
 }
 
@@ -82,5 +84,24 @@
   .text-section {
     margin-right: 0;
     margin-bottom: 2rem;
+  }
+
+  .text-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .text-section p {
+      font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .text-section h2 {
+      font-size: 1.5rem;
+  }
+
+  .text-section p {
+      font-size: 0.85rem;
   }
 }

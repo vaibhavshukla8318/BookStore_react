@@ -51,7 +51,7 @@ const BookStoreLayout = () => {
         </div>
         <div className="navbar-links">
           <NavLink className="link" to="/">Home</NavLink>
-          <a href="#settings">Settings</a>
+          <a className='setting' href="#settings">Settings</a>
         </div>
        
       </header>

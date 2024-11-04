@@ -1,51 +1,41 @@
 // eslint-disable-next-line no-unused-vars
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../store/auth'
-import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-
-
+import { useAuth } from '../../store/auth';
+import { FaArrowLeftLong, FaArrowRightLong, FaStar, FaHeart } from "react-icons/fa6";
 
 const BookStore = () => {
-
   const [books, setBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 5;
 
-  const {API, authorizationToken} = useAuth();
+  const { API, authorizationToken } = useAuth();
   
-
- 
-    // get books from the backend
-    
-   
-    const getBooks = async () =>{
-          
-      try {
-  
-        const response = await fetch(`${API}/api/bookstore/books?page=${currentPage}&limit=${itemsPerPage}`, {
-          method: 'GET',
-          headers: {
-            Authorization: authorizationToken
-           }
-        })
-        if(response.ok){
-          const data = await response.json();
-          // console.log('books data: ', data.response[0].recent);
-          setBooks(data.response || []);
-          setTotalPages(data.totalPages || 1);
+  // Fetch books from the backend
+  const getBooks = async () => {
+    try {
+      const response = await fetch(`${API}/api/bookstore/books?page=${currentPage}&limit=${itemsPerPage}`, {
+        method: 'GET',
+        headers: {
+          Authorization: authorizationToken
         }
-      } catch (error) {
-        console.log(`Error is coming from frontend services: ${error}`)
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setBooks(data.response || []);
+        setTotalPages(data.totalPages || 1);
       }
-  }
+    } catch (error) {
+      console.log(`Error is coming from frontend services: ${error}`);
+    }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     getBooks();
-  }, [currentPage])
+  }, [currentPage]);
 
-
+  // Pagination
   const goToNextPage = () => setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   const goToPrevPage = () => setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
 
@@ -59,8 +49,8 @@ const BookStore = () => {
               <small>our latest offers</small>
             </div>
 
-            <div>     
-              <span onClick={goToPrevPage} className={currentPage == 1 ? "disabled" : ""}>
+            <div>
+              <span onClick={goToPrevPage} className={currentPage === 1 ? "disabled" : ""}>
                 <FaArrowLeftLong />
               </span>
               
@@ -69,34 +59,44 @@ const BookStore = () => {
               </span>
             </div>
           </div>
+
           <div className='card-container'>
             <div>
-              {books.map((currData, index)=>{
-                const {title, author, image} = currData;
-                return(
-                  
-                    <Link to={`/bookstore/books/${currData._id}`} className="book-card" key={index}>
-                      <img src={image} alt="book cover" />
-                      <div className='title-container'>
+              {books.map((currData, index) => {
+                const { _id, title, author, image, likes, averageRating } = currData;
+                return (
+                  <Link to={`/bookstore/books/${_id}`} className="book-card" key={index}>
+                    {/* Total Likes above the image with heart icon */}
+                    <div className='like-container'>
+                      <FaHeart style={{ color: '#FF1493' }} /> {likes.length}
+                    </div>
+                    
+                    <img src={image} alt="book cover" />
+                    
+                    <div className='title-container'>
+                      <div>
                         <p className='title'>{title}</p>
                         <p>{author}</p>
                       </div>
-                    </Link>
-                  
-                  
-                )
+
+                       {/* Average Rating below the image with star icon */}
+                      <div className='rating-container'>
+                        <FaStar style={{ color: 'gold' }} /> {averageRating.toFixed(1)}
+                      </div>
+                    </div>
+                    
+                   
+                  </Link>
+                );
               })}
             </div>
 
             <span>Page {currentPage} of {totalPages}</span>
-
           </div>
-
-          
         </section>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default BookStore
+export default BookStore;

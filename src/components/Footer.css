@@ -1,12 +1,9 @@
-/* General Footer Styles */
+/* Footer Styles */
 .footer-container {
   background-color: #333;
   color: #fff;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: -20px;
 }
 
 .footer-content {
@@ -103,7 +100,7 @@
   border-top: 1px solid #444;
   padding-top: 1rem;
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .footer-bottom p {
@@ -120,5 +117,54 @@
 
   .footer-logo, .footer-links, .footer-social {
     margin-bottom: 2rem;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links ul, .footer-social ul {
+    display: block;
+  }
+
+  .footer-logo h2 {
+    font-size: 1.8rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Footer.css */
+.footer {
+  padding: 1rem 2rem;
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer p {
+      font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer p {
+      font-size: 0.75rem;
   }
 }

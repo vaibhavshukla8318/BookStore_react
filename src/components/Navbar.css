@@ -96,6 +96,44 @@ nav ul li a:hover::before {
 }
 
 
+/* Creative Tooltip */
+.tooltip {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background-color: #222;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+/* Tooltip Arrow */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 15px; 
+  width: 0;
+  height: 0;
+}
+
+nav ul li:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+
 @media (max-width: 960px) {
   .header{
     display: flex;
@@ -108,7 +146,7 @@ nav ul li a:hover::before {
   .header .nav-links {
     display: none;
     position: absolute;
-    top: 71px;
+    top: 70px;
     width: 100%;
     height: 8%;
     left: 0;
@@ -129,6 +167,30 @@ nav ul li a:hover::before {
 }
 
 
-@media (max-width: 768px) {
- 
+@media (max-width: 600px) {
+  .header .nav-links {
+    gap: 0.8rem;
+    padding: 1rem;
+    top: 60px;
+  }
+
+  nav ul li a {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
 }
+
+
+@media(max-width:400px){
+  .header .nav-links{
+    height: fit-content;
+    width: 50%;
+    padding: 20px;
+  }
+  .header .nav-links ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+

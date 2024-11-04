@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom';
 import './css/Admin.css'
+import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../store/auth'
 import {toast} from 'react-toastify'
 
@@ -18,7 +18,7 @@ const AdminContacts = () => {
         }
       });
       const data = await response.json();
-      console.log("This is a contacts All data", data);
+      // console.log("This is a contacts All data", data);
       if(response.ok){
         setContacts(data);
       }
@@ -36,8 +36,8 @@ const AdminContacts = () => {
          Authorization: authorizationToken
         }
       });
-      const data = await response.json();
-      console.log("User after delete", data);
+      // const data = await response.json();
+      // console.log("User after delete", data);
       if(response.ok){
         toast.success("Contact deleted successfully");
         getAllConatactData();
@@ -63,15 +63,22 @@ const AdminContacts = () => {
         <section id="dashboard">
           <h2>Dashboard</h2>
           <div className="dashboard-cards">
-            {/* <div className="card">Total Users: 1023</div>
-            <div className="card">Active Users: 854</div> */}
+            {/* <div className="card">Total Users: 10</div>
+            <div className="card">Active Users: 8</div> */}
             <div className="card">Messages: {contacts.length}</div>
           </div>
         </section>
 
 
         <section id="contacts">
-          <h2>Contacts</h2>
+          <div className="inventoryHeader">
+
+            <NavLink className='link' to="/admin/inventory/bookRating">Update</NavLink>
+            <NavLink className='link' to="/admin/inventory/comments">Comments</NavLink>
+            <NavLink className='link' to="/admin/users">Users</NavLink>
+            <NavLink className='link' to="/admin/contacts">Contacts</NavLink>
+
+          </div>
           <div className="table-container">
             <table>
               <thead>
@@ -79,7 +86,6 @@ const AdminContacts = () => {
                   <th>Name</th>
                   <th>Email</th>
                   <th>Message</th>
-                  {/* <th>Update</th> */}
                   <th>Delete</th>
                 </tr>
               </thead>
@@ -89,10 +95,9 @@ const AdminContacts = () => {
                     <tr className='table-row'>
                       <td>{currContact.username}</td>
                       <td>{currContact.email}</td>
-                      <td><div className='emailData'>{currContact.message}</div></td>
+                      <td><div className='messageData'>{currContact.message}</div></td>
                       
-                      {/* <td>Edit</td> */}
-                      <td><button onClick={()=> deleteContactById(currContact._id)}>Delete</button></td>
+                      <td className='delete' onClick={()=> deleteContactById(currContact._id)}>Delete</td>
                     </tr>
                   </tbody>
                 )

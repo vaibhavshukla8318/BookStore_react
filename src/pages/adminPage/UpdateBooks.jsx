@@ -59,7 +59,7 @@ const UpdateBook = () => {
         },
       });
       const data = await response.json();
-      console.log('Book data:', data);
+      // console.log('Book data:', data);
       setBookData(data);
     } catch (error) {
       console.log(error);

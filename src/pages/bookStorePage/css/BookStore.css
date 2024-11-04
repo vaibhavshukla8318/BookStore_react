@@ -16,6 +16,7 @@
   top: 0;
   left: 0;
   z-index: 999;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .book-store .navbar-logo {
@@ -110,6 +111,7 @@
 }
 .book-card{
    /* margin-bottom: 70px; */
+   position: relative;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -117,6 +119,8 @@
    padding: 10px;
    text-decoration: none;
 }
+
+
 .book-card:hover{
   box-shadow: 3px 3px 3px 3px gray;
   border: none;
@@ -126,13 +130,17 @@
   min-height: 260px;
   width: 190px;
   border-radius: 10px;
+  aspect-ratio: 3/2;
 }
 .title-container{
-  margin-top: 7px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 .title-container p{
   position: sticky;
-  width: 190px;
+  width: 130px;
   font-size: 0.95rem;
   font-weight: 500;
   margin-top: -0.1px;
@@ -149,136 +157,320 @@
 }
 
 
+.like-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  
-
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: -20px;
 }
 
 
-
-/* BookStore.css */
-
+/* Content Page Container */
 .contentPage {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  margin: 0rem auto;
+  text-align: center;
+  margin-top: 7rem;
+  background-color: #fff;
+  padding: 1.5rem;
   border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.7);
+ 
+}
+
+.detailsContainer{
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+}
+
+.detailsContainer .pdfImage{
+  /* border: 2px solid blue; */
+  width: 400px;
+  max-width: 100%;
+}
+
+.pdfContainer{
+  /* border: 2px solid red; */
+  width: calc(100% - 400px);
+  height: 300px;
+  margin-top: 14%;
+  text-align: left;
+}
+.pdfContainer div{
+  width: 100%;
+  height: 80%;
+  white-space: wrap;
+  overflow: auto;
+}
+.pdfContainer div::-webkit-scrollbar{
+  display: none;
+}
+
+.pdfContainer h3{
+  margin-bottom: 15px;
+}
+.pdfContainer .link{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  color: #000;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-left: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.pdfContainer .link:hover{
+   background-color:#0d5bb5;
+   color: #fff;
 }
 
 .contentPage h1 {
   font-size: 2rem;
   color: #333;
-  margin-bottom: 10px;
-  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .contentPage h2 {
-  font-size: 1.5rem;
-  color: #555;
-  margin-bottom: 20px;
-  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1.5rem;
 }
 
 .contentPage img {
-  display: block;
-  width: 400px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 500px;
   height: 300px;
   max-height: 100%;
-  margin: 20px auto;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  object-fit: cover;
 }
 
-.contentPage h3 {
-  font-size: 1.2rem;
-  color: #444;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  text-align: center;
+/* PDF Links */
+.pdf-links {
+  margin-bottom: 1.5rem;
 }
 
-.contentPage a {
-  display: inline-block;
-  margin: 5px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.contentPage a:hover {
-  background-color: #45a049;
-}
-
-.contentPage p {
+.pdf-links a {
+  color: #1a73e8;
   font-size: 1rem;
+  text-decoration: underline;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.pdf-links a:hover {
+  color: #0d5bb5;
+}
+
+/* Actions (Likes, Dislikes, Rating) */
+.actions {
+  display: flex;
+  justify-content: space-around;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.actions div:nth-child(1){
+  display: flex;
+}
+.actions .ratings>span{
+  cursor: pointer;
+}
+.actions .ratings>p{
+  padding: 0;
+  margin:0;
+  display: flex;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
   color: #666;
-  margin-top: 20px;
-  text-align: center;
+  transition: color 0.3s;
+}
+
+.actions button:hover {
+  color: #1a73e8;
+}
+
+/* Comments Section */
+.comments-section {
+  margin-top: 2rem;
+  padding: 1rem 0rem;
+  border-top: 1px solid #ddd;
+  text-align: left;
+}
+
+.comments-section h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.comments-section textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.comments-section button {
+  background-color: #1a73e8;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.comments-section button:hover {
+  background-color: #155bb5;
+}
+
+/* Individual Comment */
+.comment {
+  /* margin-top: 1rem; */
+  padding: 0.4rem 1rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  /* background-color: #e0dcdc; */
+  /* border: 2px solid red; */
+}
+
+.comment p {
+  /* margin-bottom: 0.5rem; */
+  color: #444;
+  text-align: justify;
+}
+.comment span{
+  /* margin: 40px 0; */
+  margin-left: 20px;
+  font-size: 0.8rem;
+  color: #163cd4;
+  
+}
+.comment .comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.comment .comment-header strong {
+  font-size: 1rem;
+  color: #333;
+}
+
+.comment .reply-btn {
+  background: none;
+  border: none;
+  color: #1a73e8;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.comment .reply-btn:hover {
+  color: #0d5bb5;
+}
+
+/* Reply Section */
+.reply-section {
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid #f0f0f0;
+}
+
+.reply-section textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+/* Replies Styling */
+.replies {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.replies p {
+  color: #9c5c5c;
+  font-size: 0.9rem;
+  margin: 0.4rem 0;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .contentPage {
-    padding: 15px;
+@media (max-width: 640px) {
+  .book-store .navbar-links .setting{
+    display: none;
   }
-  
-  .contentPage h1 {
-    font-size: 1.75rem;
+  .book-store .navbar-links .link{
+    font-weight: 600;
+    font-size: 1.4rem;
   }
-
-  .contentPage h2 {
-    font-size: 1.3rem;
+  .detailsContainer{
+    flex-direction: column;
+    gap: 20px;
   }
-
-  .contentPage img {
-    width: 90%;
+  .pdfImage{
+    width: 100%!important;
   }
-
-  .contentPage a {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .contentPage h1 {
-    font-size: 1.5rem;
-  }
-
-  .contentPage h2 {
-    font-size: 1.2rem;
-  }
-
-  .contentPage img {
-    width: 100%;
-  }
-
-  .contentPage a {
-    padding: 6px 12px;
-    font-size: 0.85rem;
+  .pdfContainer{
+    margin-top: 0;
     width: 100%;
     text-align: center;
   }
-
-  .contentPage h3 {
-    font-size: 1.1rem;
+  .pdfContainer .link{
+    padding: 0;
+    padding-top: 8px;
   }
 
-  .contentPage p {
-    font-size: 0.95rem;
+  .contentPage {
+    padding: 1rem;
+  }
+
+  .actions {
+    /* flex-direction: column;
+    align-items: flex-start; */
+  }
+
+  .details h1 {
+    font-size: 1.5rem;
   }
 }
-
-
-

@@ -35,7 +35,7 @@ const UpdatePage = () => {
         }
       });
       const data = await response.json();
-      console.log("User single data", data);
+      // console.log("User single data", data);
       setUserData(data);
      
     } catch (error) {

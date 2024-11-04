@@ -1,19 +1,15 @@
-.pdf-input-group{
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.pdf-input-group>input{
-  margin: 7px 0;
-}
-
-/* General Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Arial', sans-serif;
 }
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
 
 .admin-container {
   display: flex;
@@ -27,17 +23,6 @@
   font-size: 1.9rem;
   cursor: pointer;
 }
-
-/* .nav-links {
-  display: flex;
-} */
-
-/* .nav-links ul {
-  background-color: #333;
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-} */
 
 
 /* Navbar */
@@ -58,26 +43,14 @@
 
 .navbar-logo {
   font-size: 1.5rem;
+  min-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .navbar-logo .link{
   text-decoration: none;
   color: #fff;
-}
-
-.navbar-links{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.navbar-links a {
-  margin: 0 15px;
-  color: white;
-  text-decoration: none;
-}
-
-.navbar-links a:hover {
-  text-decoration: underline;
+  white-space: nowrap;
 }
 
 /* Sidebar */
@@ -90,6 +63,7 @@
   top: 0;
   left: 0;
   overflow-y: auto;
+  z-index: 9;
 }
 
 .sidebar ul {
@@ -232,6 +206,22 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.inventoryHeader{
+  display: flex;
+  gap: 30px;
+}
+.inventoryHeader>.link{
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+
+.inventoryHeader .link.active{
+  color: #ff9900;
+}
+
 /* Tables */
 .table-container {
   overflow-x: auto;
@@ -241,7 +231,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 table thead {
@@ -254,7 +244,11 @@ table th, table td {
   padding: 0;
   padding-top: 10px;
   margin:10px 0;
-  width: 200px;
+  width:195px;
+  max-width:100% ;
+  display: flex;
+  flex-wrap: wrap;
+  
 }
 
 .updateHeaderData{
@@ -272,21 +266,22 @@ table th, table td {
 
 
 table tr{
+  
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
   text-align: justify;
   border-bottom: 2px solid gray;
 }
 
 
-.emailData{
+.messageData{
   height: 150px;
   width: 270px;
   max-height: fit-content;
   overflow-y: auto;
   text-align: justify;
 }
-.emailData::-webkit-scrollbar{
+.messageData::-webkit-scrollbar{
   display: none;
 }
 
@@ -338,23 +333,48 @@ tr th:nth-child(4){
 }
 
 /* Form group styling */
+
+form h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+form h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+form button:hover {
+  background-color: #0056b3;
+} 
+
 .form-group {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
   margin-bottom: 15px;
   text-align: left;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin: 10px 0 5px;
   font-size: 1rem;
   color: #555;
 }
 
 /* Input fields */
-.form-group input {
+.form-group input,
+form textarea, 
+form select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
+  margin-bottom: 15px;
   border-radius: 5px;
   font-size: 1rem;
   transition: border 0.3s;
@@ -363,6 +383,16 @@ tr th:nth-child(4){
 .form-group input:focus {
   border-color: #007bff;
   outline: none;
+}
+
+.pdf-input-group{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pdf-input-group>input{
+  margin: 7px 0;
 }
 
 /* Submit button */
@@ -436,4 +466,55 @@ tr th:nth-child(4){
     gap: 0.5rem;
   }
 
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  .header h1 {
+      font-size: 2rem;
+  }
+
+  form h2 {
+      font-size: 1.5rem;
+  }
+
+  form button {
+      font-size: 0.9rem;
+  }
+
+  table th, 
+  table td {
+      font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar{
+    top: 66px;
+    border-radius: 0;
+  }
+  .header h1 {
+      font-size: 1.5rem;
+  }
+
+  .header p {
+      font-size: 1rem;
+  }
+
+  form h2 {
+      font-size: 1.2rem;
+  }
+
+  form button {
+      font-size: 0.8rem;
+  }
+
+  table th, 
+  table td {
+      font-size: 1.1rem;
+      padding: 8px;
+  }
 }

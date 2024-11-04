@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './css/BookStore.css';
 import { useAuth } from '../../store/auth';
-import { FaHeart, FaRegHeart, FaStar, FaRegStar } from 'react-icons/fa';
+import { FaStar, FaRegStar, FaThumbsDown, FaThumbsUp } from 'react-icons/fa';
 
 const ContentPage = () => {
   const [data, setData] = useState({
@@ -25,6 +25,7 @@ const ContentPage = () => {
   const { API, authorizationToken } = useAuth();
   const params = useParams();
 
+  // fetching data
   const fetchData = async () => {
     try {
       const response = await fetch(`${API}/api/bookStore/books/${params.id}`, {
@@ -45,6 +46,7 @@ const ContentPage = () => {
     }
   };
 
+  // handle likes
   const handleLike = async () => {
     try {
       const response = await fetch(`${API}/api/bookStore/books/${params.id}/like`, {
@@ -58,6 +60,8 @@ const ContentPage = () => {
       console.error(`Error in like functionality: ${error}`);
     }
   };
+
+  // handle dislikes
 
   const handleDislike = async () => {
     try {
@@ -73,6 +77,7 @@ const ContentPage = () => {
     }
   };
 
+  // handle rating
   const handleRating = async () => {
     try {
       const response = await fetch(`${API}/api/bookStore/books/${params.id}/rate`, {
@@ -89,6 +94,7 @@ const ContentPage = () => {
     }
   };
 
+  // handle AddComment
   const handleAddComment = async () => {
     try {
       const response = await fetch(`${API}/api/bookStore/books/${params.id}/comment`, {
@@ -107,6 +113,8 @@ const ContentPage = () => {
       console.error(`Error in adding comment: ${error}`);
     }
   };
+
+  // handle AddReply
 
   const handleAddReply = async (commentId) => {
     try {
@@ -134,51 +142,74 @@ const ContentPage = () => {
 
   return (
     <div className="contentPage">
-      <h1>{data.title}</h1>
-      <h2>By {data.author}</h2>
-      <img src={data.image} alt={data.title} />
+      <div className='detailsContainer'>
+        <div className='pdfImage'>
+          <h1>{data.title}</h1>
+          <h2>By {data.author}</h2>
+          <img src={data.image} alt={data.title} />
+        </div>
 
-      <h3>PDF Links:</h3>
-      {data.pdf && data.pdf.length > 0 ? (
-        data.pdf.map((pdfLink, index) => (
-          <Link key={index} to={pdfLink}>
-            PDF Link {index + 1}
-          </Link>
-        ))
-      ) : (
-        <p>No PDF links available.</p>
-      )}
+        <div className='pdfContainer'>
+            <h3>PDF Links:</h3>
+            <div>
+              {data.pdf && data.pdf.length > 0 ? (
+                data.pdf.map((pdfLink, index) => (
+                    <Link key={index} className='link'  to={pdfLink}>
+                    {index + 1}
+                    </Link>
+                ))
+              ) : (
+                <p>No PDF links available.</p>
+              )}
+            </div>
+        </div>
+      </div>
+      
 
       <div className="actions">
-        <button onClick={handleLike}>
-          {data.likes.includes(/* your user ID */) ? (
-            <FaHeart style={{ color: 'red' }} />
-          ) : (
-            <FaRegHeart />
-          )}
-          {data.likes.length}
-        </button>
-        <button onClick={handleDislike}>
-          {data.dislikes.includes(/* your user ID */) ? (
-            <FaHeart style={{ color: 'gray' }} />
-          ) : (
-            <FaRegHeart />
-          )}
-          {data.dislikes.length}
-        </button>
+
+         <div>
+           {/* likes */}
+          <button onClick={handleLike}>
+            {data.likes.includes() ? (
+              <FaThumbsDown/>
+            ) : (
+              <FaThumbsUp />
+            )}
+            {data.likes.length}
+          </button>
+
+          {/* dislikes */}
+          <button onClick={handleDislike}>
+            {data.dislikes.includes() ? (
+              <FaThumbsUp/>
+            ) : (
+              <FaThumbsDown />
+            )}
+            {data.dislikes.length}
+          </button>
+         </div>
 
         <div>
-          <h3>Rate this Book</h3>
-          {[1, 2, 3, 4, 5].map((star) => (
-            <span key={star} onClick={() => setUserRating(star)}>
-              {userRating >= star ? <FaStar style={{ color: 'gold' }} /> : <FaRegStar />}
-            </span>
-          ))}
-          <button onClick={handleRating}>Submit Rating</button>
+
+          {/* rate */}
+          {/* <h3>Rate this Book</h3> */}
+          <div className='ratings'>
+
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span key={star} onClick={() => setUserRating(star)}>
+                {userRating >= star ? <FaStar style={{ color: 'gold' }} /> : <FaRegStar />}
+              </span>
+            ))}
+
+            {/* submit */}
+            <p onClick={handleRating}>Submit Rating</p>
+          </div>
           <p>Average Rating: {data.averageRating.toFixed(1)}</p>
         </div>
       </div>
 
+      {/* comments */}
       <div className="comments-section">
         <h3>Comments</h3>
         <textarea
@@ -190,8 +221,8 @@ const ContentPage = () => {
 
         {data.comments.map((comment) => (
           <div key={comment._id} className="comment">
-            <p><strong>{comment.userId.username}:</strong> {comment.content}</p>
-            <button onClick={() => setReplyingToCommentId(comment._id)}>Reply</button>
+            <p><strong>{comment.userId.username}🟥</strong> {comment.content}</p>
+            <span onClick={() => setReplyingToCommentId(comment._id)}>Reply</span>
 
             {replyingToCommentId === comment._id && (
               <div className="reply-section">
@@ -207,7 +238,7 @@ const ContentPage = () => {
             {comment.replies && comment.replies.length > 0 && (
               <div className="replies">
                 {comment.replies.map((reply) => (
-                  <p key={reply._id}><strong>{reply.userId.username}:</strong> {reply.content}</p>
+                  <p key={reply._id}><strong>{reply.userId.username}👉</strong> {reply.content}</p>
                 ))}
               </div>
             )}

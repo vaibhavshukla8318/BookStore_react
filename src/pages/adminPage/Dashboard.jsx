@@ -2,13 +2,24 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import './css/Admin.css'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useAuth } from '../../store/auth';
 
 const Dashboard = () => {
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <h1>Loading ...</h1>
+  }
+
+  if (!user.isAdmin) {
+    return <Navigate to="/" />
+  }
  
   return (
     <>
       <div className="admin-container">
+
         {/* Dashboard Landing */}
         <main className="main-content">
           <section className="dashboard-welcome">
@@ -26,10 +37,10 @@ const Dashboard = () => {
               <h3>Total Sales</h3>
               <p>$1200</p>
             </div>
-            <div className="metric-card">
+            {/* <div className="metric-card">
               <h3>New Users Today</h3>
               <p>2</p>
-            </div>
+            </div> */}
             <div className="metric-card">
               <h3>Orders Pending</h3>
               <p>5</p>
@@ -59,9 +70,8 @@ const Dashboard = () => {
           <section className="quick-actions">
             <h2>Quick Actions</h2>
             <div className="action-buttons">
-              {/* <button>Add New Book</button> */}
               <button><Link className='link' to="/admin/addBooks">Add New Book</Link></button>
-              <button><Link className='link' to="/admin/inventory">Manage Inventory</Link></button>
+              <button><Link className='link' to="/admin/inventory/bookRating">Manage Inventory</Link></button>
               <button>Generate Reports</button>
             </div>
           </section>

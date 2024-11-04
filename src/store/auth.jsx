@@ -21,7 +21,8 @@ export const AuthProvider = ({ children }) => {
    };
 
    let isLoggedIn = !!token;
-   console.log("isLoggedIn", isLoggedIn)
+  //  console.log("isLoggedIn", isLoggedIn)
+   
   //  Logout Functionality
   const LogoutUser = () => {
      setToken("");
@@ -41,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log('user data ', data.userData);
+        // console.log('user data ', data.userData);
         setUser(data.userData);
         setIsLoading(false);
       }

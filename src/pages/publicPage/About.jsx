@@ -16,15 +16,15 @@ const About = () => {
         <h2>Our Impact</h2>
         <div className="analytics-cards">
           <div className="card">
-            <h3>10,000+</h3>
+            <h3>100+</h3>
             <p>Books Sold</p>
           </div>
           <div className="card">
-            <h3>5,000+</h3>
+            <h3>50+</h3>
             <p>Happy Readers</p>
           </div>
           <div className="card">
-            <h3>1,000+</h3>
+            <h3>100+</h3>
             <p>Book Reviews</p>
           </div>
         </div>

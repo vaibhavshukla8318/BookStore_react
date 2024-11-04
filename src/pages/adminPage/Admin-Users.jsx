@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react'
 import './css/Admin.css'
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import { useAuth } from '../../store/auth'
 
 const AdminUsers = () => {
@@ -18,7 +18,7 @@ const AdminUsers = () => {
        });
        const data = await response.json();
        setUser(data);
-       console.log("This is a user All data", data);
+      //  console.log("This is a user All data", data);
      } catch (error) {
       console.log(error);
      }
@@ -33,8 +33,8 @@ const AdminUsers = () => {
          Authorization: authorizationToken
         }
       });
-      const data = await response.json();
-      console.log("User after delete", data);
+      // const data = await response.json();
+      // console.log("User after delete", data);
       if(response.ok){
         getAllUsersData();
       }
@@ -58,13 +58,18 @@ const AdminUsers = () => {
           <h2>Dashboard</h2>
           <div className="dashboard-cards">
             <div className="card">Total Users: {user.length}</div>
-            {/* <div className="card">Active Users: 854</div>
-            <div className="card">Messages: 123</div> */}
           </div>
         </section>
 
         <section id="users">
-          <h2>Users</h2>
+          <div className="inventoryHeader">
+
+            <NavLink className='link' to="/admin/inventory/bookRating">Update</NavLink>
+            <NavLink className='link' to="/admin/inventory/comments">Comments</NavLink>
+            <NavLink className='link' to="/admin/users">Users</NavLink>
+            <NavLink className='link' to="/admin/contacts">Contacts</NavLink>
+
+          </div>
           <div className="table-container">
             <table>
               <thead>
@@ -72,7 +77,6 @@ const AdminUsers = () => {
                   <th>Name</th>
                   <th>Email</th>
                   <th>Phone</th>
-                  {/* <th>Status</th> */}
                   <th className='updateHeaderData'>Update</th>
                   <th>Delete</th>
                 </tr>
@@ -84,11 +88,10 @@ const AdminUsers = () => {
                     <td>{currUser.username}</td>
                     <td>{currUser.email}</td>
                     <td>{currUser.phone}</td>
-                    {/* <td>Active</td> */}
                     <td>
-                      <Link className='dataLink' to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
+                      <Link to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
                     </td>
-                    <td><button onClick={()=> deleteUserById(currUser._id)}>Delete</button></td>
+                    <td className='delete' onClick={()=> deleteUserById(currUser._id)}>Delete</td>
                   </tr>
                 </tbody>
                 )                      

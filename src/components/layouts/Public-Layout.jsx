@@ -9,7 +9,6 @@ const PublicLayout = () => {
     <>
       <Navbar />
       <>
-        {/* This will render the child routes */}
         <Outlet />
       </>
       <Footer />

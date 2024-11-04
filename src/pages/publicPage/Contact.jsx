@@ -71,6 +71,7 @@ const Contact = () => {
         <img src="../../public/images/contactImage.jpg" alt="Contact Image" className="contact-image" />
 
         <form onSubmit={handleSubmit} className="contact-form">
+          
           {/* Username */}
           <div className="form-group">
             <label htmlFor="username">Username</label>

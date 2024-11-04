@@ -38,7 +38,7 @@ const AddingBooks = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(books);
+    // console.log(books);
 
     const image = document.getElementById('image').value;
 

@@ -1,5 +1,5 @@
 /* CSS for Home */
-/* General Styles */
+
 .home-container {
   font-family: 'Arial', sans-serif;
   color: #333;
@@ -8,10 +8,13 @@
 
 /* Hero Section */
 .hero {
+  height: 90vh;
+  background: url('../images/hero-bg.jpg') center/cover no-repeat;
+  color: #fff;
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   background-color: #f4f4f4;
   padding: 2rem;
   border-radius: 10px;
@@ -20,11 +23,12 @@
 
 .hero-text h1 {
   font-size: 3rem;
+  margin-bottom: 1rem;
   color: #333;
 }
 
 .hero-text p {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-top: 1rem;
   color: #666;
 }
@@ -95,6 +99,13 @@
     margin-top: 1.5rem;
   }
 
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+  .hero-text p {
+    font-size: 1rem; 
+  }
+
   .collection-items, .text-items {
     flex-direction: column;
   }
@@ -125,3 +136,16 @@
  
 }
 
+
+@media (max-width: 480px) {
+  .hero{
+    height: auto;
+  }
+  .hero h1 {
+      font-size: 2rem;
+  }
+
+  .hero p {
+      font-size: 0.9rem;
+  }
+}

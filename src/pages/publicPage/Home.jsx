@@ -5,6 +5,7 @@ import './css/Public.css';
 const Home = () => {
   return (
     <div className="home-container">
+      
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-text">
