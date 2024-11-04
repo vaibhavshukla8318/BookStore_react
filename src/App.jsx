@@ -10,11 +10,11 @@ import Register from './pages/publicPage/Register';
 import PageNotFound from './pages/publicPage/PageNotFound';
 import { Logout } from './pages/publicPage/Logout';
 
-// Admin layout
+// Admin
 import AdminPanel from './components/layouts/Admin-Layout';
 import Dashboard from './pages/adminPage/Dashboard';
 import AdminContacts from './pages/adminPage/Admin-Contacts';
-import AdminUsers from './pages/adminPage/admin-users';
+import AdminUsers from './pages/adminPage/Admin-Users';
 import UpdatePage from './pages/adminPage/UpdatePage';
 import AddingBooks from './pages/adminPage/AddingBooks';
 import InventoryPage from './pages/adminPage/InventoryPage';
