@@ -11,7 +11,7 @@ import PageNotFound from './pages/publicPage/PageNotFound';
 import { Logout } from './pages/publicPage/Logout';
 
 // Admin layout
-import AdminPanel from './components/layouts/admin-layout';
+import AdminPanel from './components/layouts/Admin-Layout';
 import Dashboard from './pages/adminPage/Dashboard';
 import AdminContacts from './pages/adminPage/Admin-Contacts';
 import AdminUsers from './pages/adminPage/admin-users';
