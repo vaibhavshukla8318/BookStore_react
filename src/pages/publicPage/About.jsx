@@ -1,13 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import './css/About.css';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 
 const About = () => {
   return (
     <>
-      <Navbar />
       <div className="about-container">
         {/* Header Section */}
         <header className="about-header">
@@ -59,7 +56,6 @@ const About = () => {
           </p>
         </section>
       </div>
-      <Footer />
     </>
   );
 };

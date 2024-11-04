@@ -1,13 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import './css/Public.css';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-
 const Home = () => {
   return (
     <>
-       <Navbar />
       <div className="home-container">
         
         {/* Hero Section */}
@@ -66,7 +62,6 @@ const Home = () => {
           </div>
         </section>
       </div>
-       <Footer />
     </>
   );
 };

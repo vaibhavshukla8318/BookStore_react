@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // public layout
-// import PublicLayout from './components/layouts/Public-Layout';
+import PublicLayout from './components/layouts/Public-Layout';
 import Home from './pages/publicPage/Home';
 import About from './pages/publicPage/About';
 import Services from './pages/publicPage/Services';
@@ -36,7 +36,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* Public Routes */}
-        
+        <Route   element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
@@ -47,7 +47,7 @@ const App = () => {
 
           {/* page not found */}
           <Route path="*" element={<PageNotFound />} />
-       
+        </Route>
 
         {/* Book Store Routes */}
         <Route element={<BookStoreLayout />}>
