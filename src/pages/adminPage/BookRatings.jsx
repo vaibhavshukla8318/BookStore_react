@@ -33,7 +33,7 @@ const BookRating = () => {
          Authorization: authorizationToken
         }
       });
-      const data = await response.json();
+      // const data = await response.json();
       // console.log("User after delete", data);
       if(response.ok){
         getAllBooks();

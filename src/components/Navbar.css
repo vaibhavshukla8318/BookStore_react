@@ -171,7 +171,7 @@ nav ul li:hover .tooltip {
   .header .nav-links {
     gap: 0.8rem;
     padding: 1rem;
-    top: 60px;
+    top: 80px;
   }
 
   nav ul li a {
@@ -181,7 +181,8 @@ nav ul li:hover .tooltip {
 }
 
 
-@media(max-width:400px){
+@media(max-width: 480px){
+  
   .header .nav-links{
     height: fit-content;
     width: 50%;
@@ -192,5 +193,6 @@ nav ul li:hover .tooltip {
     flex-direction: column;
     gap: 20px;
   }
+ 
 }
 

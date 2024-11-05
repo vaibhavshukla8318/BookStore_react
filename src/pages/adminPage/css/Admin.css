@@ -13,7 +13,6 @@ body {
 
 .admin-container {
   display: flex;
-  /* height: 100vh; */
 }
 
 
@@ -229,7 +228,6 @@ body {
 }
 
 table {
-  width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
@@ -422,12 +420,13 @@ form select {
 
 /* Responsive Design */
 @media (max-width: 960px) {
-  
+
   .main-content{
-    width: 100%;
-    margin: 0 auto;
+    width: 120vw;
+    margin: 0;
     padding-top: 150px;
   }
+
   .main-content h1{
     margin-bottom: 40px!important;
   }
@@ -493,9 +492,14 @@ form select {
 
 @media (max-width: 480px) {
   .sidebar{
+    height: fit-content;
+    width: 50%;
     top: 66px;
     border-radius: 0;
   }
+  .sidebar ul{
+    flex-direction: column;
+}
   .header h1 {
       font-size: 1.5rem;
   }
@@ -514,7 +518,7 @@ form select {
 
   table th, 
   table td {
-      font-size: 1.1rem;
+      font-size:1.2rem;
       padding: 8px;
   }
 }

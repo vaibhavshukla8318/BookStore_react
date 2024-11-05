@@ -1,19 +1,37 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useAuth } from "../store/auth";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Navbar = () => {
   const { isLoggedIn, user } = useAuth();
   const [showMenu, setShowMenu] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const menuRef = useRef(null); 
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
 
-  // Define tooltip message based on admin status
   const tooltipMessage = user?.isAdmin ? "Please enter here" : "Hey, you are not an admin";
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false); // Close menu if clicking outside
+      }
+    };
+
+    if (showMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMenu]);
 
   return (
     <header className="header">
@@ -23,24 +41,23 @@ const Navbar = () => {
       <div className="menu-icon" onClick={toggleMenu}>
         &#9776;
       </div>
-      <nav className={showMenu ? "nav-links active" : "nav-links"}>
+      <nav ref={menuRef} className={showMenu ? "nav-links active" : "nav-links"}>
         <ul>
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/about">About</NavLink></li>
-          <li><NavLink to="/services">Services</NavLink></li>
-          <li><NavLink to="/contact">Contact</NavLink></li>
+          <li><NavLink className='link' to="/">Home</NavLink></li>
+          <li><NavLink className='link' to="/about">About</NavLink></li>
+          <li><NavLink className='link' to="/services">Services</NavLink></li>
+          <li><NavLink className='link' to="/contact">Contact</NavLink></li>
           {isLoggedIn ? (
             <>
-              <li><NavLink to="/bookStore">Books</NavLink></li>
-              <li><NavLink to="/logout">Logout</NavLink></li>
+              <li><NavLink className='link' to="/bookStore">Books</NavLink></li>
+              <li><NavLink className='link' to="/logout">Logout</NavLink></li>
               
-              {/* Admin Link with Conditional Tooltip */}
               <li 
                 onMouseEnter={() => setShowTooltip(true)}
                 onMouseLeave={() => setShowTooltip(false)}
                 style={{ position: "relative" }}
               >
-                <NavLink to="/admin/dashboard">Admin</NavLink>
+                <NavLink className='link' to="/admin/dashboard">Admin</NavLink>
                 {showTooltip && (
                   <div className="tooltip">{tooltipMessage}</div>
                 )}
@@ -48,8 +65,8 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li><NavLink to="/login">Login</NavLink></li>
-              <li><NavLink to="/register">Register</NavLink></li>
+              <li><NavLink className='link' to="/login">Login</NavLink></li>
+              <li><NavLink className='link' to="/register">Register</NavLink></li>
             </>
           )}
         </ul>

@@ -22,18 +22,10 @@ body {
 }
 
 
-/* Mobile first approach */
+
 :root {
   --padding: 16px;
 }
-
-/* Tablet (768px and up) */
-@media (min-width: 768px) {
-  :root {
-      --padding: 24px;
-  }
-}
-
 
 
 a {
@@ -49,14 +41,18 @@ img {
 /* Responsive Font Sizes */
 @media (max-width: 768px) {
     :root {
-        font-size: 14px;
+        --padding: 24px;
+        /* font-size: 14px; */
     }
 }
 
 @media (max-width: 480px) {
     :root {
-        font-size: 12px;
+        /* font-size: 12px; */
     }
+    .link{
+        font-size: 1.3rem!important;
+      }
 }
 
 @media (min-width: 1024px) {
@@ -64,5 +60,4 @@ img {
         --padding: 32px;
     }
   }
-  
   
