@@ -56,31 +56,28 @@ const Comments = () => {
                   <th>ID</th>
                 </tr>
               </thead>
+
               <tbody>
                 {books.map((book) => {
-                   
                   return book.comments.map((comment) => (
                     <tr className='table-row' key={comment._id}>
-                       <td>
-                      {book.title}
-                      </td>
+                      <td>{book.title}</td>
+                      <td className='messageData'>🟥{comment.content}</td>
                       <td className='messageData'>
-                        🟥{comment.content}
-                      </td>
-
-                       {comment.replies.length > 0 && (
-                          <div>
-
-                            {comment.replies.map((reply) => (
-                             <td key={reply._id} className="messageData">👉{reply.content}</td>
-                            ))}
-                          </div>
+                        {comment.replies.length > 0 ? (
+                          comment.replies.map((reply) => (
+                            <div key={reply._id}>👉{reply.content}</div>
+                          ))
+                        ) : (
+                          <span>&nbsp;</span>
                         )}
+                      </td>
                       <td>{comment.userId}</td>
                     </tr>
                   ));
                 })}
               </tbody>
+
             </table>
           </div>
         </section>

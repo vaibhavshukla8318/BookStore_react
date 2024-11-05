@@ -277,8 +277,9 @@ table tr{
   width: 270px;
   max-height: fit-content;
   overflow-y: auto;
-  text-align: justify;
+  text-align: left;
 }
+
 .messageData::-webkit-scrollbar{
   display: none;
 }
