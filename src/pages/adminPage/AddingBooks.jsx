@@ -4,19 +4,20 @@ import { toast } from 'react-toastify';
 import './css/Admin.css';
 
 const AddingBooks = () => {
- 
   const [books, setBooks] = useState({
     title: "",
     author: "",
     image: "",
-    pdf: []
+    pdf: [],
+    category: ""
   });
 
+  const [newCategory, setNewCategory] = useState("");
+  const existingCategories = ['recent', 'highRated', 'frontend', 'backend', 'react', 'popular'];
   const { API, authorizationToken } = useAuth();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-
     if (name === "pdf") {
       setBooks((prevBooks) => ({
         ...prevBooks,
@@ -30,18 +31,24 @@ const AddingBooks = () => {
     }
   };
 
-  // Define the same URL validation function
-  const isValidImageUrl = (url) => {
-    const regex = /^(https?:\/\/[^\s$.?#].[^\s]*)$/;
-    return regex.test(url);
+  const handleCategoryChange = (e) => {
+    setBooks((prevBooks) => ({
+      ...prevBooks,
+      category: e.target.value
+    }));
+  };
+
+  const handleNewCategoryChange = (e) => {
+    setNewCategory(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(books);
+
+    const categoryToUse = newCategory || books.category;
+    const bookData = { ...books, category: categoryToUse };
 
     const image = document.getElementById('image').value;
-
     if (!isValidImageUrl(image)) {
       toast.error("Invalid image URL");
       return;
@@ -54,7 +61,7 @@ const AddingBooks = () => {
           "Content-Type": "application/json",
           Authorization: authorizationToken
         },
-        body: JSON.stringify(books),
+        body: JSON.stringify(bookData),
       });
 
       const res_data = await response.json();
@@ -64,8 +71,10 @@ const AddingBooks = () => {
           title: "",
           author: "",
           image: "",
-          pdf: []
+          pdf: [],
+          category: ""
         });
+        setNewCategory("");
         toast.success("Added Successfully");
       } else {
         const errorMessage = res_data.message || "Failed to add book";
@@ -74,6 +83,11 @@ const AddingBooks = () => {
     } catch (error) {
       console.log("Error:", error);
     }
+  };
+
+  const isValidImageUrl = (url) => {
+    const regex = /^(https?:\/\/[^\s$.?#].[^\s]*)$/;
+    return regex.test(url);
   };
 
   return (
@@ -125,6 +139,33 @@ const AddingBooks = () => {
             placeholder="Enter PDF URLs (comma-separated)"
             value={books.pdf.join(", ")}
             onChange={handleInput}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="category">Category</label>
+          <select
+            id="category"
+            name="category"
+            value={books.category}
+            onChange={handleCategoryChange}
+          >
+            <option value="">Select a Category</option>
+            {existingCategories.map((cat, index) => (
+              <option key={index} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Or Add New Category</label>
+          <input
+            type="text"
+            placeholder="Enter new category"
+            value={newCategory}
+            onChange={handleNewCategoryChange}
           />
         </div>
 

@@ -12,6 +12,7 @@ const UpdateBook = () => {
     author: '',
     image: '',
     pdf: [],
+    category: '' 
   });
 
   const params = useParams();
@@ -49,7 +50,7 @@ const UpdateBook = () => {
     });
   };
 
-  // get book by id (single book)
+  // Fetch book details by ID (including category)
   const getSingleBookData = async () => {
     try {
       const response = await fetch(`${API}/api/bookStore/books/${params.id}`, {
@@ -59,10 +60,9 @@ const UpdateBook = () => {
         },
       });
       const data = await response.json();
-      // console.log('Book data:', data);
       setBookData(data);
     } catch (error) {
-      console.log(error);
+      console.log(`Error fetching book data: ${error}`);
     }
   };
 
@@ -88,7 +88,7 @@ const UpdateBook = () => {
         toast.error('Failed to update book');
       }
     } catch (error) {
-      console.log(error);
+      console.log(`Error updating book: ${error}`);
     }
   };
 
@@ -130,6 +130,24 @@ const UpdateBook = () => {
             value={bookData.image}
             onChange={handleInputChange}
           />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="category">Category</label>
+          <select
+            id="category"
+            name="category"
+            value={bookData.category}
+            onChange={handleInputChange}
+          >
+            <option value="">Select a Category</option>
+            <option value="recent">Recent</option>
+            <option value="popular">Popular</option>
+            <option value="highRated">Highly Rated</option>
+            <option value="react">React</option>
+            <option value="backend">Backend</option>
+            <option value="frontend">Frontend</option>
+          </select>
         </div>
 
         <div className="form-group">
