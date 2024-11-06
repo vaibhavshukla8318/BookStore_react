@@ -4,3 +4,13 @@
 4. pdf = 5
 5. category = 4 (every category 5 image)
 
+
+
+
+Developed a fully responsive Bookstore web application using React.js, Node.js, MongoDB, and CSS, ensuring a seamless user experience across all device sizes.
+
+Implemented dynamic features like user-driven likes, dislikes, ratings, comments, and replies on books, boosting user interaction and engagement.
+
+Built a robust backend with MongoDB, handling CRUD operations, real-time data synchronization, and efficient database management for books and user interactions.
+
+Created a custom category management system that allows users to dynamically categorize books, enhancing content organization and discoverability.

@@ -49,7 +49,7 @@ const Navbar = () => {
           <li><NavLink className='link' to="/contact">Contact</NavLink></li>
           {isLoggedIn ? (
             <>
-              <li><NavLink className='link' to="/bookStore">Books</NavLink></li>
+              <li><NavLink className='link' to="/bookStore">LibroHub</NavLink></li>
               <li><NavLink className='link' to="/logout">Logout</NavLink></li>
               
               <li 

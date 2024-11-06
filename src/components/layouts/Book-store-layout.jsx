@@ -47,7 +47,7 @@ const BookStoreLayout = () => {
       {/* Navbar */}
       <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="navbar-logo">
-          <NavLink to="/bookStore" className="link">Books Store 👉</NavLink>
+          <NavLink to="/bookStore" className="link">LibroHub 👉</NavLink>
         </div>
         <div className="navbar-links">
           <NavLink className="link" to="/">Home</NavLink>
