@@ -1,9 +1,9 @@
-// This is use for storing a token on localstorage
 import { createContext, useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types"; 
+import Loader from "../pages/publicPage/Loader"; 
 
 export const AuthContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
@@ -13,28 +13,21 @@ export const AuthProvider = ({ children }) => {
   const API = import.meta.env.VITE_API_URL;
   const authorizationToken = `Bearer ${token}`;
 
-  
-
-   const storeTokenInLS = (serverToken) =>{
+  const storeTokenInLS = (serverToken) => {
     setToken(serverToken);
-      return localStorage.setItem("token", serverToken);
-   };
+    localStorage.setItem("token", serverToken);
+  };
 
-   let isLoggedIn = !!token;
-  //  console.log("isLoggedIn", isLoggedIn)
-   
-  //  Logout Functionality
+  let isLoggedIn = !!token;
+
   const LogoutUser = () => {
-     setToken("");
-    return  localStorage.removeItem("token");
-  }
-
-  // JWT authentication - to get the currently loggedIn user data
+    setToken("");
+    localStorage.removeItem("token");
+  };
 
   const userAuthentication = async () => {
-    
     try {
-       setIsLoading(true);
+      setIsLoading(true);
       const response = await fetch(`${API}/api/auth/user`, {
         headers: {
           Authorization: authorizationToken,
@@ -42,60 +35,63 @@ export const AuthProvider = ({ children }) => {
       });
       if (response.ok) {
         const data = await response.json();
-        // console.log('user data ', data.userData);
         setUser(data.userData);
-        setIsLoading(false);
-      }
-      else{
-        console.log('Error fetching user data');
-        setIsLoading(false);
+      } else {
+        console.log("Error fetching user data");
       }
     } catch (error) {
       console.log("Error fetching user data", error);
+    } finally {
+      setIsLoading(false);
     }
-  }
+  };
 
-  // get Services from the backend
-  const getServices = async () =>{
-       
-      try {
-
-        const response = await fetch(`${API}/api/data/service`, {
-          method: 'GET'
-        })
-        if(response.ok){
-          const data = await response.json();
-          // console.log('Services data: ', data.msg);
-          setServices(data.msg);
-        }
-      } catch (error) {
-        console.log(`Error is coming from frontend services: ${error}`)
+  const getServices = async () => {
+    try {
+      const response = await fetch(`${API}/api/data/service`, {
+        method: "GET",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setServices(data.msg);
       }
-  }
+    } catch (error) {
+      console.log(`Error is coming from frontend services: ${error}`);
+    }
+  };
 
-
-
-
-  useEffect(()=>{
+  useEffect(() => {
     userAuthentication();
     getServices();
-  }, [])
+  }, []);
 
+  return (
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        storeTokenInLS,
+        LogoutUser,
+        user,
+        services,
+        authorizationToken,
+        isLoading,
+        API,
+      }}
+    >
+      {isLoading ? <Loader /> : children}
+    </AuthContext.Provider>
+  );
+};
 
-   return (
-     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, services, authorizationToken, isLoading, API }}>
-        {children}
-     </AuthContext.Provider>
-   )
-}
+// Add PropTypes validation for `children`
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-
-
-
-export const useAuth = () =>{
+export const useAuth = () => {
   const authContextValue = useContext(AuthContext);
-  if(!authContextValue){
+  if (!authContextValue) {
     throw new Error("useAuth must be used outside of the provider");
   }
   return authContextValue;
-}
+};

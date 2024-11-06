@@ -13,7 +13,7 @@ const AddingBooks = () => {
   });
 
   const [newCategory, setNewCategory] = useState("");
-  const existingCategories = ['recent', 'highRated', 'frontend', 'backend', 'react', 'popular'];
+  const existingCategories = ['recent', 'highRated', 'frontend', 'backend', 'react', 'popular', 'software', 'dsa'];
   const { API, authorizationToken } = useAuth();
 
   const handleInput = (e) => {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../store/auth';
 import { FaArrowLeftLong, FaArrowRightLong, FaStar, FaHeart } from "react-icons/fa6";
 
-const categories = ['recent', 'highRated', 'frontend', 'backend', 'react', 'popular'];
+const categories = ['recent', 'highRated', 'frontend', 'backend', 'react', 'popular', 'software', 'dsa'];
 
 const createStateForCategories = (initialValue) =>
   categories.reduce((acc, category) => ({ ...acc, [category]: initialValue }), {});
@@ -119,4 +119,3 @@ const BookStore = () => {
 };
 
 export default BookStore;
-

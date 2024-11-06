@@ -92,7 +92,7 @@ const BookRating = () => {
                     <td>{currUser.author}</td>
                     <td><img className='inventoryImage' src={currUser.image} alt={currUser.title}/></td>
                     <td>
-                      <Link  to={`/admin/bookStore/books/${currUser._id}/edit`}>Edit</Link>
+                      <Link  to={`/admin/bookStore/books/${currUser._id}/edit`} className='edit'>Edit</Link>
                     </td>
                     <td>{currUser.likes.length}</td>
                     <td>{currUser.averageRating}</td>

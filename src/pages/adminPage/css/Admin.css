@@ -307,6 +307,14 @@ tr th:nth-child(4){
   padding-right: 50px;
 }
 
+.edit{
+  color: rgb(152, 133, 20);
+}
+.delete{
+  color: red;
+  cursor: pointer;
+}
+
 
 /* Update page css */
 

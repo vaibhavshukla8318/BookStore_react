@@ -89,7 +89,7 @@ const AdminUsers = () => {
                     <td>{currUser.email}</td>
                     <td>{currUser.phone}</td>
                     <td>
-                      <Link to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
+                      <Link className='edit' to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
                     </td>
                     <td className='delete' onClick={()=> deleteUserById(currUser._id)}>Delete</td>
                   </tr>
