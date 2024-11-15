@@ -47,12 +47,13 @@ const Comments = () => {
             <NavLink className='link' to="/admin/contacts">Contacts</NavLink>
           </div>
           <div className="table-container">
-            <table>
+            <table  className=''>
               <thead>
                 <tr>
                   <th>Book</th>
                   <th>Comments</th>
                   <th>Reply</th>
+                  <th>Email</th>
                   <th>ID</th>
                 </tr>
               </thead>
@@ -62,8 +63,8 @@ const Comments = () => {
                   return book.comments.map((comment) => (
                     <tr className='table-row' key={comment._id}>
                       <td>{book.title}</td>
-                      <td className='messageData'>🟥{comment.content}</td>
-                      <td className='messageData'>
+                      <td >🟥{comment.content}</td>
+                      <td >
                         {comment.replies.length > 0 ? (
                           comment.replies.map((reply) => (
                             <div key={reply._id}>👉{reply.content}</div>
@@ -72,6 +73,7 @@ const Comments = () => {
                           <span>&nbsp;</span>
                         )}
                       </td>
+                      <td>{comment.email}</td>
                       <td>{comment.userId}</td>
                     </tr>
                   ));

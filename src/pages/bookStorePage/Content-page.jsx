@@ -37,6 +37,7 @@ const ContentPage = () => {
 
       if (response.ok) {
         const fetchedData = await response.json();
+        // console.log("THIS IS COMING FROM CONTENT PAGE" ,fetchedData)
         setData(fetchedData);
       } else {
         console.error("Failed to fetch data:", response.statusText);
@@ -221,7 +222,31 @@ const ContentPage = () => {
 
         {data.comments.map((comment) => (
           <div key={comment._id} className="comment">
-            <p><strong>{comment.userId.username}🟥</strong> {comment.content}</p>
+          
+            <strong>
+              {comment.email}{' '}
+              <span>
+                {(() => {
+                  const now = new Date();
+                  const diff = Math.abs(now - new Date(comment.timestamp));
+                  const seconds = Math.floor(diff / 1000);
+                  const minutes = Math.floor(seconds / 60);
+                  const hours = Math.floor(minutes / 60);
+                  const days = Math.floor(hours / 24);
+
+                  return days > 0
+                    ? `${days} day${days > 1 ? 's' : ''} ago`
+                    : hours > 0
+                    ? `${hours} hour${hours > 1 ? 's' : ''} ago`
+                    : minutes > 0
+                    ? `${minutes} minute${minutes > 1 ? 's' : ''} ago`
+                    : `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+                })()}
+               </span>
+            </strong>
+
+            <p>{comment.content}</p>
+
             <span onClick={() => setReplyingToCommentId(comment._id)}>Reply</span>
 
             {replyingToCommentId === comment._id && (
@@ -238,7 +263,30 @@ const ContentPage = () => {
             {comment.replies && comment.replies.length > 0 && (
               <div className="replies">
                 {comment.replies.map((reply) => (
-                  <p key={reply._id}><strong>{reply.userId.username}👉</strong> {reply.content}</p>
+                  <div  key={reply._id}>
+                    <strong>
+                      {reply.email}{' '}
+                      <span>
+                        {(() => {
+                          const now = new Date();
+                          const diff = Math.abs(now - new Date(reply.timestamp));
+                          const seconds = Math.floor(diff / 1000);
+                          const minutes = Math.floor(seconds / 60);
+                          const hours = Math.floor(minutes / 60);
+                          const days = Math.floor(hours / 24);
+
+                          return days > 0
+                            ? `${days} day${days > 1 ? 's' : ''} ago`
+                            : hours > 0
+                            ? `${hours} hour${hours > 1 ? 's' : ''} ago`
+                            : minutes > 0
+                            ? `${minutes} minute${minutes > 1 ? 's' : ''} ago`
+                            : `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+                        })()}
+                      </span>
+                    </strong>
+                    <p>👉{reply.content}</p>
+                  </div>
                 ))}
               </div>
             )}
@@ -250,14 +298,3 @@ const ContentPage = () => {
 };
 
 export default ContentPage;
-
-
-
-
-
-
-
-
-
-
-
