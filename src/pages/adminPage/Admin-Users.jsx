@@ -4,6 +4,7 @@ import './css/Admin.css'
 import {Link, NavLink} from 'react-router-dom';
 import { useAuth } from '../../store/auth'
 
+
 const AdminUsers = () => {
    const [user, setUser] = useState([]);
    const {authorizationToken, API} = useAuth();
@@ -77,6 +78,7 @@ const AdminUsers = () => {
                   <th>Name</th>
                   <th>Email</th>
                   <th>Phone</th>
+                  <th>isAdmin</th>
                   <th className='updateHeaderData'>Update</th>
                   <th>Delete</th>
                 </tr>
@@ -88,6 +90,7 @@ const AdminUsers = () => {
                     <td>{currUser.username}</td>
                     <td>{currUser.email}</td>
                     <td>{currUser.phone}</td>
+                    <td>{currUser.isAdmin ? "True" : "False"}</td>
                     <td>
                       <Link className='edit' to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
                     </td>

@@ -336,6 +336,15 @@ tr th:nth-child(4){
   border: 2px solid rgb(255, 191, 0);
 }
 
+.admin-badge {
+  background-color: #eaf7ea;
+  border: 1px solid #28a745;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+
 /* Heading */
 .update-container h2 {
   color: #333;

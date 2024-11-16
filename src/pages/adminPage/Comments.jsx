@@ -18,7 +18,7 @@ const Comments = () => {
       });
       const data = await response.json();
       setBooks(data);
-      // console.log("This is the comments Data", data);
+      console.log("This is the comments Data", data);
     } catch (error) {
       console.log(error);
     }
