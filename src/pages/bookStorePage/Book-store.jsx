@@ -68,6 +68,7 @@ const BookStore = () => {
     }));
   };
 
+
   return (
     <main className="main-content">
       {categories.map((category) => (
@@ -94,7 +95,16 @@ const BookStore = () => {
                     <div className='like-container'>
                       <FaHeart style={{ color: '#FF1493' }} /> {likes.length}
                     </div>
-                    <img src={image} alt="book cover" />
+                    <img
+                      src={
+                        image
+                          ? image.startsWith('http://') || image.startsWith('https://')
+                            ? image
+                            : `${API}${image}`
+                          : 'fallback.jpg'
+                      }
+                      alt="book cover"
+                    />
                     <div className="title-container">
                       <div>
                         <p className="title">{title}</p>
@@ -107,7 +117,6 @@ const BookStore = () => {
                   </Link>
                 );
               })}
-
               </div>
               <span>Page {currentPage[category]} of {totalPages[category]}</span>
             </div>

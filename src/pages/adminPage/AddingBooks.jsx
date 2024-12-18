@@ -42,53 +42,55 @@ const AddingBooks = () => {
     setNewCategory(e.target.value);
   };
 
+  const handleImageInput = (e) => {
+    const file = e.target.files ? e.target.files[0] : null; // Check if file is selected
+    if (file) {
+      setBooks((prevBooks) => ({
+        ...prevBooks,
+        image: file, // Store the file object
+      }));
+    } else {
+      setBooks((prevBooks) => ({
+        ...prevBooks,
+        image: e.target.value, // Store the URL as a string
+      }));
+    }
+  };
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const categoryToUse = newCategory || books.category;
-    const bookData = { ...books, category: categoryToUse };
-
-    const image = document.getElementById('image').value;
-    if (!isValidImageUrl(image)) {
-      toast.error("Invalid image URL");
-      return;
-    }
-
+    const formData = new FormData();
+    formData.append("title", books.title);
+    formData.append("author", books.author);
+    formData.append("image", books.image);
+    formData.append("pdf", JSON.stringify(books.pdf));
+    formData.append("category", books.category || newCategory);
+  
     try {
       const response = await fetch(`${API}/api/bookstore/addedBooks`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: authorizationToken
+          Authorization: authorizationToken,
         },
-        body: JSON.stringify(bookData),
+        body: formData,
       });
-
+  
       const res_data = await response.json();
-
+      
       if (response.ok) {
-        setBooks({
-          title: "",
-          author: "",
-          image: "",
-          pdf: [],
-          category: ""
-        });
-        setNewCategory("");
         toast.success("Added Successfully");
+        setBooks({ title: "", author: "", image: "", pdf: [], category: "" });
       } else {
-        const errorMessage = res_data.message || "Failed to add book";
-        toast.error(errorMessage);
+        toast.error(res_data.message || "Failed to add book");
       }
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error:", error);
     }
   };
 
-  const isValidImageUrl = (url) => {
-    const regex = /^(https?:\/\/[^\s$.?#].[^\s]*)$/;
-    return regex.test(url);
-  };
+
+
 
   return (
     <div className="update-container">
@@ -121,12 +123,18 @@ const AddingBooks = () => {
         <div className="form-group">
           <label htmlFor="image">Image</label>
           <input
-            type="text"
+            type="file"
             id="image"
             name="image"
-            placeholder="Enter image URL"
-            value={books.image}
-            onChange={handleInput}
+            onChange={handleImageInput}
+          />
+          <input
+            type="text"
+            id="imageURL"
+            name="image"
+            placeholder="Or enter image URL"
+            value={typeof books.image === "string" ? books.image : ""}
+            onChange={(e) => handleInput(e)}
           />
         </div>
 

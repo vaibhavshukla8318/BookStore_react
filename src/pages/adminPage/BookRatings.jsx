@@ -85,12 +85,25 @@ const BookRating = () => {
                 </tr>
               </thead>
               {book.map((currUser, index) =>{
+                const {image} = currUser;
                 return(
                 <tbody  key={index}>
                   <tr className='table-row'>
                     <td>{currUser.title}</td>
                     <td>{currUser.author}</td>
-                    <td><img className='inventoryImage' src={currUser.image} alt={currUser.title}/></td>
+                    <td>
+                    <img
+                      className='inventoryImage'
+                      src={
+                        image
+                          ? image.startsWith('http://') || image.startsWith('https://')
+                            ? image
+                            : `${API}${image}`
+                          : 'fallback.jpg'
+                      }
+                      alt="book cover"
+                    />
+                    </td>
                     <td>
                       <Link  to={`/admin/bookStore/books/${currUser._id}/edit`} className='edit'>Edit</Link>
                     </td>

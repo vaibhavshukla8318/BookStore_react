@@ -22,7 +22,7 @@ const ContentPage = () => {
   const [replyContent, setReplyContent] = useState('');
   const [replyingToCommentId, setReplyingToCommentId] = useState(null);
   
-  const { API, authorizationToken } = useAuth();
+  const {API, authorizationToken } = useAuth();
   const params = useParams();
 
   // fetching data
@@ -78,22 +78,28 @@ const ContentPage = () => {
     }
   };
 
-  // handle rating
-  const handleRating = async () => {
+  // handle ratings
+  const handleRating = async (rating) => {
     try {
       const response = await fetch(`${API}/api/bookStore/books/${params.id}/rate`, {
         method: 'PUT',
         headers: {
           Authorization: authorizationToken,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ rating: userRating })
+        body: JSON.stringify({ rating }),
       });
-      if (response.ok) fetchData();
+  
+      if (response.ok) {
+        fetchData();
+      } else {
+        console.error("Failed to submit rating:", response.statusText);
+      }
     } catch (error) {
       console.error(`Error in rating functionality: ${error}`);
     }
   };
+  
 
   // handle AddComment
   const handleAddComment = async () => {
@@ -147,7 +153,16 @@ const ContentPage = () => {
         <div className='pdfImage'>
           <h1>{data.title}</h1>
           <h2>By {data.author}</h2>
-          <img src={data.image} alt={data.title} />
+          <img
+            src={
+              data.image
+                ? data.image.startsWith('http://') || data.image.startsWith('https://')
+                  ? data.image
+                  : `${API}${data.image}`
+                : 'fallback.jpg'
+            }
+            alt="book cover"
+          />
         </div>
 
         <div className='pdfContainer'>
@@ -169,43 +184,37 @@ const ContentPage = () => {
 
       <div className="actions">
 
-         <div>
-           {/* likes */}
+        <div>
+        
           <button onClick={handleLike}>
-            {data.likes.includes() ? (
-              <FaThumbsDown/>
-            ) : (
-              <FaThumbsUp />
-            )}
+            <FaThumbsUp />
             {data.likes.length}
           </button>
 
-          {/* dislikes */}
           <button onClick={handleDislike}>
-            {data.dislikes.includes() ? (
-              <FaThumbsUp/>
-            ) : (
-              <FaThumbsDown />
-            )}
+            <FaThumbsDown />
             {data.dislikes.length}
           </button>
-         </div>
-
+        </div>
+        
         <div>
 
           {/* rate */}
           {/* <h3>Rate this Book</h3> */}
           <div className='ratings'>
-
             {[1, 2, 3, 4, 5].map((star) => (
-              <span key={star} onClick={() => setUserRating(star)}>
+              <span
+                key={star}
+                onClick={() => {
+                  setUserRating(star); 
+                  handleRating(star);
+                }}
+                style={{ cursor: 'pointer' }}
+              >
                 {userRating >= star ? <FaStar style={{ color: 'gold' }} /> : <FaRegStar />}
               </span>
             ))}
-
-            {/* submit */}
-            <p onClick={handleRating}>Submit Rating</p>
-          </div>
+           </div>
           <p>Average Rating: {data.averageRating.toFixed(1)}</p>
         </div>
       </div>

@@ -30,7 +30,6 @@ const Register = () => {
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
-    console.log(user);
 
     try {
       const response = await fetch(`${API}/api/auth/register`,{
@@ -42,12 +41,12 @@ const Register = () => {
      });
 
      const res_data = await response.json();
-     console.log("res from server" ,res_data.extraDetails);
+     console.log("res from server" ,res_data);
 
      if(response.ok){
     //  stored the token in local storage
       storeTokenInLS(res_data.token)
-
+      
       setUser({
         username:"", 
         email: "",
