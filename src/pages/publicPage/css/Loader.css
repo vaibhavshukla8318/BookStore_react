@@ -16,7 +16,7 @@
   height: 80px;
   display: flex;
   justify-content: space-around;
-  animation: bounce 1.5s linear infinite; /* bounce instead of spin */
+  animation: spin 2s linear infinite;
 }
 
 .circle {
@@ -53,5 +53,5 @@
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
 }
