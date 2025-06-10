@@ -14,6 +14,8 @@ const Navbar = () => {
   };
 
   const tooltipMessage = user?.isAdmin ? "Please enter here" : "Hey, you are not an admin";
+  const openLibrohub = isLoggedIn ? "Please enter" : "Hey, you are not logged in";
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -47,9 +49,18 @@ const Navbar = () => {
           <li><NavLink className='link' to="/about">About</NavLink></li>
           <li><NavLink className='link' to="/services">Services</NavLink></li>
           <li><NavLink className='link' to="/contact">Contact</NavLink></li>
+          <li 
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+                style={{ position: "relative" }}
+              >
+                <NavLink className='link' to="/bookStore">LibroHub</NavLink>
+                {showTooltip && (
+                  <div className="tooltip">{openLibrohub}</div>
+                )}
+          </li>
           {isLoggedIn ? (
             <>
-              <li><NavLink className='link' to="/bookStore">LibroHub</NavLink></li>
               <li><NavLink className='link' to="/logout">Logout</NavLink></li>
               
               <li 
