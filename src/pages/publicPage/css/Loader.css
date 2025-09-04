@@ -16,7 +16,7 @@
   height: 80px;
   display: flex;
   justify-content: space-around;
-  animation: spin 4s linear infinite;
+  animation: spin 2s linear infinite;
 }
 
 .circle {
